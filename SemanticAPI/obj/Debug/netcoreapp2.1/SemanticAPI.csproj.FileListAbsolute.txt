@@ -1,0 +1,13 @@
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.deps.json
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.runtimeconfig.json
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.runtimeconfig.dev.json
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.dll
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.csproj.CoreCompileInputs.cache
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.RazorAssemblyInfo.cache
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.RazorAssemblyInfo.cs
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.AssemblyInfoInputs.cache
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.AssemblyInfo.cs
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.RazorTargetAssemblyInfo.cache
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.pdb
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.dll
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.pdb
