@@ -11,3 +11,4 @@ C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebSe
 C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.pdb
 C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.dll
 C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.pdb
+C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.csprojAssemblyReference.cache

@@ -14,7 +14,7 @@ using SemanticAPI.Helpers;
 
 namespace SemanticAPI.OPCUASemantic
 {
-    //Error Enum Set
+    //Error Set
     public enum ExitCode : int
     {
         Ok = 0,
@@ -45,6 +45,7 @@ namespace SemanticAPI.OPCUASemantic
 
         public OPCUAClient(string _endpointURL, bool _autoAccept, int _stopTimeout)
         {
+            //Constructor assignment
             endpointURL = _endpointURL;
             autoAccept = _autoAccept;
             clientRunTime = _stopTimeout <= 0 ? Timeout.Infinite : _stopTimeout * 1000;
@@ -118,14 +119,38 @@ namespace SemanticAPI.OPCUASemantic
             var endpointConf = EndpointConfiguration.Create(configuration);
             var endpointSet = new ConfiguredEndpoint(null, selectedEndpoint, endpointConf);
             //create a session
+            //TODO:we should handle session in a different class
             session = await Session.Create(configuration, endpointSet, false, "OPC UA Console Client",
                                             60000, new UserIdentity(new AnonymousIdentityToken()), null);
 
 
+            //If there is no data to send after the next PublishingInterval, the server
+            // will skip it.
             session.KeepAlive += KeepAlive;
             Console.WriteLine("session parameters: " + session);
 
             Console.WriteLine("Browse the OPC UA server namespace");
+            exitCode = ExitCode.ErrorBrowseNamespace;
+            ReferenceDescriptionCollection references;
+            Byte[] continuationPoint;
+
+            references = session.FetchReferences(ObjectIds.ObjectsFolder);
+
+            //Session Browsing
+            session.Browse(
+                null,
+                null,
+                ObjectIds.ObjectsFolder,
+                0u,
+                BrowseDirection.Forward,
+                ReferenceTypeIds.HierarchicalReferences,
+                true,
+                (uint)NodeClass.Variable | (uint)NodeClass.Object | (uint)NodeClass.Method,
+                out continuationPoint,
+                out references);
+
+            Console.WriteLine("Write all the references DisplayName, BrowserName, NodeClass");
+
         }
 
         //KeepAlive handler
