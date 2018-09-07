@@ -28,7 +28,6 @@ namespace SemanticAPI.OPCUASemantic
         ErrorRunning = 0x18,
         ErrorNoKeepAlive = 0x30,
         ErrorInvalidCommandLine = 0x100
-
     };
 
     //public static ExitCode ExitCode { get => exitCode; }
@@ -67,8 +66,8 @@ namespace SemanticAPI.OPCUASemantic
         private async Task SampleClient()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            XmlDocument log4netConfig = new XmlDocument();
-            log4netConfig.Load(File.OpenRead("log4net.config"));
+            //XmlDocument log4netConfig = new XmlDocument();
+            //log4netConfig.Load(File.OpenRead("log4net.config"));
             Console.WriteLine("It started");
             try
             {

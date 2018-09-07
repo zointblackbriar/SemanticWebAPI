@@ -23,19 +23,19 @@ namespace SemanticAPI
             //Principally, parameters could get via args 
             //But we will use web API with AngularJS GUI
             //Sample OPC UA Endpoint
-            string endpointURL = "opc.tcp://desktop-674d0i3:62541/DynamicServer";
-            bool autoAccept = false;
-            int stopTimeout = Timeout.Infinite;
-            try
-            {
-                Console.WriteLine("Client is running");
-                OPCUAClient client = new OPCUAClient(endpointURL, autoAccept, stopTimeout);
-                client.Run();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            //string endpointURL = "opc.tcp://desktop-674d0i3:62541/DynamicServer";
+            //bool autoAccept = false;
+            //int stopTimeout = Timeout.Infinite;
+            //try
+            //{
+            //    Console.WriteLine("Client is running");
+            //    OPCUAClient client = new OPCUAClient(endpointURL, autoAccept, stopTimeout);
+            //    client.Run();
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
 
             CreateWebHostBuilder(args).Build().Run();
         }
