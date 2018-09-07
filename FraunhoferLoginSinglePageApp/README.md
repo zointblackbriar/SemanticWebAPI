@@ -1,5 +1,7 @@
-# angular-6-registration-login-example
+Semantic Web Interface Example 
 
-Angular 6 User Registration and Login Example with Webpack 4
+In login page I used Angular 2 with ASP.NET Core
 
-Full tutorial with example available at http://jasonwatmore.com/post/2018/05/16/angular-6-user-registration-and-login-example-tutorial
+You can find the tutorial at the following link
+
+ http://jasonwatmore.com/post/2018/05/16/angular-6-user-registration-and-login-example-tutorial
