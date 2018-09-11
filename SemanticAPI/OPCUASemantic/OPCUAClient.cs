@@ -30,6 +30,8 @@ namespace SemanticAPI.OPCUASemantic
         ErrorInvalidCommandLine = 0x100
     };
 
+
+
     //public static ExitCode ExitCode { get => exitCode; }
 
     public class OPCUAClient
@@ -55,7 +57,8 @@ namespace SemanticAPI.OPCUASemantic
             try
             {
                 SampleClient().Wait();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Utils.Trace("ServíceResultException:" + e.Message);
                 Console.WriteLine("Error code is" + e.Message);
@@ -82,6 +85,71 @@ namespace SemanticAPI.OPCUASemantic
             //You cannot reach via this. Because this member is static
             exitCode = ExitCode.ErrorCreateApplication;
 
+        }
+
+        //KeepAlive handler
+
+        private void KeepAlive(Session sender, KeepAliveEventArgs e)
+        {
+            if (e.Status != null && ServiceResult.IsNotGood(e.Status))
+            {
+                Console.WriteLine("Keep Alive Handler");
+
+                if (reconnectHandler == null)
+                {
+                    reconnectHandler = new SessionReconnectHandler();
+                    reconnectHandler.BeginReconnect(sender, ReconnectPeriod * 1000, ReconnectComplete);
+                }
+            }
+        }
+
+        //Handler of reconnection
+        private void ReconnectComplete(object sender, EventArgs e)
+        {
+            if (!Object.ReferenceEquals(sender, reconnectHandler))
+            {
+                //exit from function
+                return;
+            }
+
+            session = reconnectHandler.Session;
+            reconnectHandler.Dispose();
+            reconnectHandler = null;
+        }
+
+        public async Task<Node> ReadNodeAsync(string serverUrl, string nodeId)
+        {
+            //TODO create a session function
+            Session sessionId = await GetSessionAsync(serverUrl);
+            NodeId nodeToRead = ParserUtils.ParserUtilsNodeIdString(nodeId);
+            var node = sessionId.ReadNode(nodeToRead);
+            return node;
+        }
+
+        //TODO After autharization, this function could be implementable by a web user
+        //Bool function
+        public async Task<bool> WriteNodeAsync(string serverUrl, VariableNode variableNode, NodeState stateofNode)
+        {
+            Session session = await GetSessionAsync(serverUrl);
+            var typeChecker = new TypeControl(session);
+            WriteValueCollection valuesToBeWritten = new WriteValueCollection();
+
+            //JSON Array
+            WriteValue writeValue = new WriteValue
+            {
+                NodeId = variableNode.NodeId,
+                AttributeId = Attributes.Value,
+                //Value = typeChecker.DataFetcherFromNodeState(stateofNode, variableNode)
+            };
+            return true;
+
+        }
+
+
+
+
+        public async Task<Session> GetSessionAsync(string serverUrl)
+        {
             ApplicationInstance application = new ApplicationInstance
             {
                 ApplicationName = "UA Core Client",
@@ -91,30 +159,17 @@ namespace SemanticAPI.OPCUASemantic
 
             //get all config data as asynchronous
             ApplicationConfiguration configuration = await application.LoadApplicationConfiguration(false);
-
-
             //TODO: Check certificate if required
-            //asynchronous check
             bool haveAppCertificate = await application.CheckApplicationInstanceCertificate(false, 0);
-            if(haveAppCertificate == false)
+            if (haveAppCertificate == false)
             {
                 throw new Exception("Certificate cannot be found");
             }
 
-            Console.WriteLine("Discover endpoints of {0}", endpointURL);
-            //obtain exit code
-            exitCode = ExitCode.ErrorDiscoverEndpoints;
-
-            //public static EndpointDescription SelectEndpoint(string discoveryUrl, 
-                                                            // bool useSecurity,
-                                                            // int operationTimeout = -1 (default)
             var selectedEndpoint = CoreClientUtils.SelectEndpoint(endpointURL, haveAppCertificate, 15000);
             //print out selectedEndpoint
             Console.WriteLine("selected endpoint: " + selectedEndpoint);
 
-
-            //Create a session with OPCUA Server
-            exitCode = ExitCode.ErrorDiscoverEndpoints;
             var endpointConf = EndpointConfiguration.Create(configuration);
             var endpointSet = new ConfiguredEndpoint(null, selectedEndpoint, endpointConf);
             //create a session
@@ -123,10 +178,6 @@ namespace SemanticAPI.OPCUASemantic
                                             60000, new UserIdentity(new AnonymousIdentityToken()), null);
 
 
-            //If there is no data to send after the next PublishingInterval, the server
-            // will skip it.
-            session.KeepAlive += KeepAlive;
-            Console.WriteLine("session parameters: " + session);
 
             Console.WriteLine("Browse the OPC UA server namespace");
             exitCode = ExitCode.ErrorBrowseNamespace;
@@ -150,41 +201,11 @@ namespace SemanticAPI.OPCUASemantic
 
             Console.WriteLine("Write all the references DisplayName, BrowserName, NodeClass");
 
+            //If there is no data to send after the next PublishingInterval, the server
+            // will skip it.
+            session.KeepAlive += KeepAlive;
+            Console.WriteLine("session parameters: " + session);
+            return session;
         }
-
-        //KeepAlive handler
-        
-        private void KeepAlive(Session sender, KeepAliveEventArgs e)
-        {
-            if(e.Status != null && ServiceResult.IsNotGood(e.Status))
-            {
-                Console.WriteLine("Keep Alive Handler");
-
-                if(reconnectHandler == null)
-                {
-                    reconnectHandler = new SessionReconnectHandler();
-                    reconnectHandler.BeginReconnect(sender, ReconnectPeriod * 1000, ReconnectComplete);
-                }
-            }
-        }
-
-        //Handler of reconnection
-        private void ReconnectComplete(object sender, EventArgs e)
-        {
-            if(!Object.ReferenceEquals(sender, reconnectHandler))
-            {
-                //exit from function
-                return;
-            }
-
-            session = reconnectHandler.Session;
-            reconnectHandler.Dispose();
-            reconnectHandler = null;
-        }
-
-
-
     }
-
-
 }

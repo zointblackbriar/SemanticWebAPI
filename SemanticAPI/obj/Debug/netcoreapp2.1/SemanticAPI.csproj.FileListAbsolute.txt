@@ -12,3 +12,17 @@ C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebSe
 C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.dll
 C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.pdb
 C:\Users\zoint\Desktop\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.csprojAssemblyReference.cache
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.csprojAssemblyReference.cache
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.csproj.CoreCompileInputs.cache
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.RazorAssemblyInfo.cache
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.RazorAssemblyInfo.cs
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.AssemblyInfoInputs.cache
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.AssemblyInfo.cs
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.dll
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.pdb
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.deps.json
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.runtimeconfig.json
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.runtimeconfig.dev.json
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.dll
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\bin\Debug\netcoreapp2.1\SemanticAPI.pdb
+G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\SemanticAPI\obj\Debug\netcoreapp2.1\SemanticAPI.RazorTargetAssemblyInfo.cache
