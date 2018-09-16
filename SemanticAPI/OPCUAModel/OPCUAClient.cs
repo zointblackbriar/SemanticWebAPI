@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml;
 using Opc.Ua;
 using Opc.Ua.Client;
 using Opc.Ua.Configuration;
-using SemanticAPI.Helpers;
+using SemanticAPI.OPCUADataType;
+using SemanticAPI.OPCUAModel;
 
 //TODO Logger class is supposed to be added.
 
@@ -43,6 +42,11 @@ namespace SemanticAPI.OPCUASemantic
         int clientRunTime = Timeout.Infinite; // System.Threading Library
         static bool autoAccept = false;
         static ExitCode exitCode;
+
+        public OPCUAClient()
+        {
+
+        }
 
         public OPCUAClient(string _endpointURL, bool _autoAccept, int _stopTimeout)
         {
@@ -206,6 +210,31 @@ namespace SemanticAPI.OPCUASemantic
             session.KeepAlive += KeepAlive;
             Console.WriteLine("session parameters: " + session);
             return session;
+        }
+
+
+
+        public async Task<IEnumerable<BaseType>> BrowseNodeAsync(string serverUrl, string nodeBrowsingId)
+        {
+            //Get Session
+            Session session = await GetSessionAsync(serverUrl);
+            NodeId nodeToBrowseId = ParserUtils.ParserUtilsNodeIdString(nodeBrowsingId);
+
+            var browser = new Browser(session)
+            {
+                NodeClassMask = (int)NodeClass.Method | (int)NodeClass.Object | (int)NodeClass.Variable,
+                ResultMask = (uint)BrowseResultMask.DisplayName | (uint)BrowseResultMask.NodeClass | (uint)BrowseResultMask.ReferenceTypeInfo,
+                BrowseDirection = BrowseDirection.Forward,
+                ReferenceTypeId = ReferenceTypeIds.HierarchicalReferences
+            };
+
+            //return a browser object
+            return browser.Browse(nodeBrowsingId).Select(ReferenceDescription => new BaseType
+            (ReferenceDescription.NodeId.ToStringId(session.MessageContext.NamespaceUris),
+                ReferenceDescription.DisplayName.Text,
+                ReferenceDescription.NodeClass,
+                ReferenceDescription.ReferenceTypeId));
+
         }
     }
 }

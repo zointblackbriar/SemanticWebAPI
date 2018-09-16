@@ -8,18 +8,23 @@ using Opc.Ua;
 
 namespace SemanticAPI.OPCUADataType
 {
-    public class SchemaType
+    public class SchemaBaseType
     {
-        public readonly JToken value;
+        public  JToken value;
 
-        public readonly JsonSchema schema;
+        public  JSchema schema;
 
         public StatusCode? StatusCode { get; set; }
 
-        public SchemaType(JToken value, JsonSchema schema)
+        public SchemaBaseType(JToken value, JSchema schema)
         {
             this.value = value;
             this.schema = schema;
+        }
+
+        public SchemaBaseType()
+        {
+            //Empty constructor
         }
     }
 }

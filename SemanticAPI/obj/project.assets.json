@@ -2711,6 +2711,31 @@
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "Newtonsoft.Json.Schema/3.0.10": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.Schema.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.Schema.dll": {}
+        }
+      },
+      "NJsonSchema/9.10.73": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.0/NJsonSchema.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/NJsonSchema.dll": {}
+        }
+      },
       "OPCFoundation.NetStandard.Opc.Ua/1.4.354.18-preview": {
         "type": "package",
         "dependencies": {
@@ -7569,6 +7594,44 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "Newtonsoft.Json.Schema/3.0.10": {
+      "sha512": "Iv4elFE8W6lko+0UsGGVcvsctXaLJCTg5Bul6MqRaI1t7K2ZB12dP3DWFkJh0a9qkqHFOLNQxW2KPtR30SzB4w==",
+      "type": "package",
+      "path": "newtonsoft.json.schema/3.0.10",
+      "files": [
+        "LICENSE.md",
+        "lib/net35/Newtonsoft.Json.Schema.dll",
+        "lib/net35/Newtonsoft.Json.Schema.xml",
+        "lib/net40/Newtonsoft.Json.Schema.dll",
+        "lib/net40/Newtonsoft.Json.Schema.xml",
+        "lib/net45/Newtonsoft.Json.Schema.dll",
+        "lib/net45/Newtonsoft.Json.Schema.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.Schema.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.Schema.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.Schema.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.Schema.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.Schema.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.Schema.xml",
+        "newtonsoft.json.schema.3.0.10.nupkg.sha512",
+        "newtonsoft.json.schema.nuspec"
+      ]
+    },
+    "NJsonSchema/9.10.73": {
+      "sha512": "p1mD583bafsf/27mjPvNljMyTqcjNB6oMR0fMBeAZlda/6/mOixNXcZYMaFrd8wRcxQYxkgAkDr1Q/9j5tlGDQ==",
+      "type": "package",
+      "path": "njsonschema/9.10.73",
+      "files": [
+        ".signature.p7s",
+        "lib/net40/NJsonSchema.dll",
+        "lib/net40/NJsonSchema.xml",
+        "lib/net45/NJsonSchema.dll",
+        "lib/net45/NJsonSchema.xml",
+        "lib/netstandard1.0/NJsonSchema.dll",
+        "lib/netstandard1.0/NJsonSchema.xml",
+        "njsonschema.9.10.73.nupkg.sha512",
+        "njsonschema.nuspec"
       ]
     },
     "OPCFoundation.NetStandard.Opc.Ua/1.4.354.18-preview": {
@@ -12983,6 +13046,8 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 5.0.1",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
+      "NJsonSchema >= 9.10.73",
+      "Newtonsoft.Json.Schema >= 3.0.10",
       "OPCFoundation.NetStandard.Opc.Ua >= 1.4.354.18-preview",
       "log4net >= 2.0.8"
     ]
@@ -13047,6 +13112,14 @@
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
+          },
+          "NJsonSchema": {
+            "target": "Package",
+            "version": "[9.10.73, )"
+          },
+          "Newtonsoft.Json.Schema": {
+            "target": "Package",
+            "version": "[3.0.10, )"
           },
           "OPCFoundation.NetStandard.Opc.Ua": {
             "target": "Package",
