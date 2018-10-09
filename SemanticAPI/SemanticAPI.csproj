@@ -14,6 +14,7 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="log4net" Version="2.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.10" />
     <PackageReference Include="NJsonSchema" Version="9.10.73" />
     <PackageReference Include="OPCFoundation.NetStandard.Opc.Ua" Version="1.4.354.18-preview" />

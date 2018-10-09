@@ -8,12 +8,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using SemanticAPI.Helpers;
-using SemanticAPI.Services;
 using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
+using SemanticAPI.Models.DataSet;
+using SemanticAPI.Models.OPCUADataType;
+using SemanticAPI.Models.AuthCredentials;
+using SemanticAPI.Models.Options;
+using SemanticAPI.MVC;
+using SemanticAPI.OPCUAModel;
+using SemanticAPI.Auth;
+using SemanticAPI.Services;
 
 namespace SemanticAPI
 {
@@ -29,62 +36,66 @@ namespace SemanticAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
-            services.AddDbContext<DataContext>(x => x.UseInMemoryDatabase("TestDb"));
-            services.AddMvc();
-            services.AddAutoMapper();
-
             // configure strongly typed settings objects
-            var appSettingsSection = Configuration.GetSection("AppSettings");
+            var appSettingsSection = Configuration.GetSection("JwtOptions");
             services.Configure<AppSettings>(appSettingsSection);
+            //Add service related to IOptions feature in Controllers
+
+
 
             // configure jwt authentication
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            services.AddAuthentication(x =>
+            services.AddAuthentication(options =>
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(x =>
+            .AddJwtBearer(options =>
             {
-                x.Events = new JwtBearerEvents
+
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    OnTokenValidated = context =>
-                    {
-                        var userService = context.HttpContext.RequestServices.GetRequiredService<IUserService>();
-                        var userId = int.Parse(context.Principal.Identity.Name);
-                        var user = userService.GetById(userId);
-                        if (user == null)
-                        {
-                            // return unauthorized if user no longer exists
-                            context.Fail("Unauthorized");
-                        }
-                        return Task.CompletedTask;
-                    }
-                };
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = true,
+                    //ValidIssuer = Configuration["JwtOptions:Issuer"],
+                    //ValidAudience = Configuration["JwtOptions:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["JwtOptions:SecurityKey"]))
                 };
             });
 
-            // configure DI for application services
+            services.AddOptions();
+            services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
+            services.Configure<ServerOptions>(Configuration.GetSection("ServerOptions"));
+
+            //Register server specific for the platform
+            services.AddTransient<ITokenManager, JwtManager>();
+            //Register server specific for the platform
             services.AddScoped<IUserService, UserService>();
+            //Register a singleton service managing OPC UA interactions
+            services.AddSingleton<IOPCUAClientSingleton, OPCUAClient>();
+
+            //First two important
+            services.AddCors();
+            services.AddMvc();
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
-            // global cors policy
+            //global cors policy
             app.UseCors(x => x
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
@@ -92,6 +103,8 @@ namespace SemanticAPI
                 .AllowCredentials());
 
             app.UseAuthentication();
+
+            //app.CheckToken();
 
             app.UseMvc();
         }

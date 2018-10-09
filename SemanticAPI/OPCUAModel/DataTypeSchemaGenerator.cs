@@ -1,5 +1,4 @@
-﻿//Marco Stefano Scroppo
-//OPC UA Web Application
+﻿//OPC UA Web Application
 //@Source : https://github.com/OPCUAUniCT
 
 

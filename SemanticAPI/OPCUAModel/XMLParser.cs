@@ -1,4 +1,9 @@
-﻿using System;
+﻿//OPC UA Web Application
+//@Source : https://github.com/OPCUAUniCT
+
+
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +14,7 @@ using System.Xml.XPath;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
 using Opc.Ua;
-using SemanticAPI.OPCUADataType;
+using SemanticAPI.Models.OPCUADataType;
 
 namespace SemanticAPI.OPCUAModel
 {
@@ -18,124 +23,168 @@ namespace SemanticAPI.OPCUAModel
     public class XMLParser
     {
 
-        private  XPathNavigator _navigate;
-        private  XmlNamespaceManager _namespaceMan;
-        private  BinaryDecoder _binaryDecoder;
-        public XMLParser(string sourceXML)
-        {
-            addNamespaceFromXml(sourceXML);
-        }
+        private readonly XPathNavigator _nav;
+        private readonly XmlNamespaceManager _ns;
+        private BinaryDecoder _bd;
 
-        private void addNamespaceFromXml(string param_sourceXML)
+        public XMLParser(string dict)
         {
-            using (TextReader textReader = new StringReader(param_sourceXML))
+            using (TextReader sr = new StringReader(dict))
             {
-                var path = new XPathDocument(textReader);
-                _navigate = path.CreateNavigator();
+                var pathDoc = new XPathDocument(sr);
+                _nav = pathDoc.CreateNavigator();
 
-                _navigate.MoveToFollowing(XPathNodeType.Element);
+                //add all xmlns to namespaceManager.
+                _nav.MoveToFollowing(XPathNodeType.Element);
 
-                IDictionary<string, string> namespaces = _navigate.GetNamespacesInScope(System.Xml.XmlNamespaceScope.All);
-                _namespaceMan = new XmlNamespaceManager(_navigate.NameTable);
+                IDictionary<string, string> namespaces = _nav.GetNamespacesInScope(XmlNamespaceScope.All);
+                _ns = new XmlNamespaceManager(_nav.NameTable);
 
-                foreach (KeyValuePair<string, string> item in namespaces)
-                    _namespaceMan.AddNamespace(item.Key, item.Value);
+                foreach (KeyValuePair<string, string> entry in namespaces)
+                    _ns.AddNamespace(entry.Key, entry.Value);
             }
         }
 
-        public SchemaBaseType Parse(string descriptionId, ExtensionObject extensionObject, ServiceMessageContext context, bool generateSchema)
+        /// <summary>
+        /// Function that parses complex types
+        /// </summary>
+        /// <param name="descriptionId"></param>
+        /// <param name="extensionObject"></param>
+        /// <param name="context"></param>
+        /// <param name="generateSchema"></param>
+        /// <returns></returns>
+        public UaValue Parse(string descriptionId, ExtensionObject extensionObject, ServiceMessageContext context, bool generateSchema)
         {
-            //ExtensionObject may contain any scalar data type.Even those that are unknown to the
-            //receiver
-            //@Reference : https://open62541.org/doc/0.2/types.html#extensionobject
-            _binaryDecoder = new BinaryDecoder((byte[])extensionObject.Body, context);
+            _bd = new BinaryDecoder((byte[])extensionObject.Body, context);
 
             return BuildJsonForObject(descriptionId, generateSchema);
         }
 
-        private SchemaBaseType BuildJsonForObject(string param_descriptionId, bool param_generateSchema )
+        private UaValue BuildJsonForObject(string descriptionId, bool generateSchema)
         {
-            var complexObject = new JObject();
-            var complexSchema = new JSchema { Type = JSchemaType.Object };
-            int length = 0;
-            if (complexSchema == null)
-                return null;
-            XPathNodeIterator iterator = _navigate.Select($"/opc:TypeDictionary/opc:StructuredType[@Name='{param_descriptionId}']", _namespaceMan);
-            while(iterator.MoveNext())
+            var complexObj = new JObject();
+            var complexSchema = generateSchema ? new JSchema { Type = JSchemaType.Object } : null;
+
+            XPathNodeIterator iterator = _nav.Select($"/opc:TypeDictionary/opc:StructuredType[@Name='{descriptionId}']", _ns);
+
+            while (iterator.MoveNext())
             {
                 var structuredBaseType = iterator.Current.GetAttribute("BaseType", "");
 
-                if (structuredBaseType == "ua:Union") throw new Exception("Decoding process is not correct");
+                if (structuredBaseType == "ua:Union") throw new NotSupportedException("Union decoding not implemented in the current version of the platform");
 
-                XPathNodeIterator newIterator = iterator.Current.SelectDescendants(XPathNodeType.Element, false);
-
-                while(newIterator.MoveNext())
+                XPathNodeIterator newIterator = iterator.Current.SelectDescendants(XPathNodeType.Element, matchSelf: false);
+                while (newIterator.MoveNext())
                 {
-                    if(newIterator.Current.Name.Equals("opc:Field"))
+                    if (newIterator.Current.Name.Equals("opc:Field"))
                     {
                         string fieldName = newIterator.Current.GetAttribute("Name", "");
                         string type = newIterator.Current.GetAttribute("TypeName", "");
                         string lengthSource = newIterator.Current.GetAttribute("LengthField", "");
 
-                        if (string.IsNullOrEmpty(lengthSource)) length = 1;
-                        int.Parse((string)complexObject[lengthSource]);
+                        int l = LengthField(lengthSource, complexObj);
 
-                        if(!type.Contains("opc:") || type.Contains("ua:"))
+                        if (!(type.Contains("opc:") || type.Contains("ua:")))
                         {
-                            var uaValue = BuildInnerComplex(type.Split(':')[1], length, param_generateSchema);
-                            complexObject[fieldName] = uaValue.value;
+                            var uaValue = BuildInnerComplex(type.Split(':')[1], l, generateSchema);
+                            complexObj[fieldName] = uaValue.Value;
+                            if (generateSchema)
+                            {
+                                complexSchema.Properties.Add(fieldName, uaValue.Schema);
+                            }
                         }
-
-
+                        else
+                        {
+                            var uaValue = BuildSimple(type, l, generateSchema);
+                            complexObj[fieldName] = uaValue.Value;
+                            if (generateSchema)
+                            {
+                                complexSchema.Properties.Add(fieldName, uaValue.Schema);
+                            }
+                        }
                     }
                 }
             }
 
-
-            return new SchemaBaseType(complexObject, complexSchema);
+            return new UaValue(complexObj, complexSchema);
         }
 
-        private SchemaBaseType BuildInnerComplex(string description, int length, bool generateSchema)
+        private int LengthField(string lengthFieldSource, JToken currentJson)
         {
-            if (length == 1) BuildJsonForObject(description, generateSchema);
+            if (string.IsNullOrEmpty(lengthFieldSource)) return 1;
+            return int.Parse((string)currentJson[lengthFieldSource]);
 
-            var jsonArray = new JArray();
-            SchemaBaseType schemaVal = new SchemaBaseType();
+        }
 
-            for(int counter = 0; counter < length; counter++)
+        private UaValue BuildSimple(string type, int length, bool generateSchema)
+        {
+            var builtinType = DataTypeAnalyzer.GetBuiltinTypeFromTypeName(type.Split(':')[0], type.Split(':')[1]);
+            var jSchema = generateSchema ? DataTypeSchemaGenerator.GenerateSchemaForStandardTypeDescription(builtinType) : null;
+
+            if (length == 1)
             {
-                schemaVal = BuildJsonForObject(description, generateSchema);
-                jsonArray.Insert(counter, schemaVal.value);
+                var jValue = JToken.FromObject(ReadBuiltinValue(builtinType));
+                return new UaValue(jValue, jSchema);
             }
 
-            var jsonSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { length }, schemaVal.schema) : null;
-            return new SchemaBaseType(jsonArray, jsonSchema);
+            var a = new List<object>();
 
+            for (int i = 0; i < length; i++)
+            {
+                a.Add(ReadBuiltinValue(builtinType));
+            }
+
+            var arrSchema = generateSchema ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { length }, jSchema) : null;
+
+            return new UaValue(JToken.FromObject(a), arrSchema);
         }
 
-        private Object ReadBuiltinValue (BuiltInType builtInType)
+        private UaValue BuildInnerComplex(string description, int length, bool generateSchema)
         {
-            var methodToCall = "Read" + builtInType;
+            if (length == 1) return BuildJsonForObject(description, generateSchema);
+
+            var jArray = new JArray();
+            UaValue uaVal = new UaValue();
+
+            for (int i = 0; i < length; i++)
+            {
+                uaVal = BuildJsonForObject(description, generateSchema);
+                jArray.Insert(i, uaVal.Value);
+            }
+
+            var jSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { length }, uaVal.Schema) : null;
+
+            return new UaValue(jArray, jSchema);
+        }
+
+        /// <summary>
+        /// Read a Built-in value starting from the current cursor in the _bd BinaryDecoder
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private Object ReadBuiltinValue(BuiltInType builtinType)
+        {
+            var methodToCall = "Read" + builtinType;
 
             MethodInfo mInfo = typeof(BinaryDecoder).GetMethod(methodToCall, new[] { typeof(string) });
-            if(builtInType == BuiltInType.ByteString)
+            if (builtinType == BuiltInType.ByteString)
             {
-                byte[] byteString = mInfo.Invoke(_binaryDecoder, new object[] { "" }) as byte[];
+                byte[] byteString = mInfo.Invoke(_bd, new object[] { "" }) as byte[];
                 var base64ByteString = Convert.ToBase64String(byteString);
                 return base64ByteString;
             }
-            if(builtInType == BuiltInType.Guid)
+            if (builtinType == BuiltInType.Guid)
             {
-                string guid = mInfo.Invoke(_binaryDecoder, new object[] { " " }).ToString();
+                string guid = mInfo.Invoke(_bd, new object[] { "" }).ToString();
                 return guid;
             }
-            if(builtInType == BuiltInType.ExtensionObject)
+            if (builtinType == BuiltInType.ExtensionObject)
             {
-                ExtensionObject extObject = mInfo.Invoke(_binaryDecoder, new object[] { "" }) as ExtensionObject;
+                ExtensionObject extObject = mInfo.Invoke(_bd, new object[] { "" }) as ExtensionObject;
                 return extObject.Body;
             }
 
-            return mInfo.Invoke(_binaryDecoder, new object[] { "" });
+            return mInfo.Invoke(_bd, new object[] { "" });
         }
     }
 }

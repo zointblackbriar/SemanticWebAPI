@@ -1,30 +1,40 @@
-﻿using System;
+﻿//OPC UA Web Application
+//@Source : https://github.com/OPCUAUniCT
+
+
+using System;
 using System.Text.RegularExpressions;
 using Opc.Ua;
 
-namespace SemanticAPI.OPCUASemantic
+namespace SemanticAPI.OPCUAModel
 {
-    public class ParserUtils
+    public static class ParserUtils
     {
-        public static NodeId ParserUtilsNodeIdString(string str_param)
+        public static NodeId ParsePlatformNodeIdString(string str)
         {
-            NodeId nodeId = null;
-            const string patternString = @"^(\d+)-(?:(\d+)|(\S+))$";
-            var match = Regex.Match(str_param, patternString);
+            const string pattern = @"^(\d+)-(?:(\d+)|(\S+))$";
+            var match = Regex.Match(str, pattern);
             var isString = match.Groups[3].Length != 0;
             var isNumeric = match.Groups[2].Length != 0;
 
-            var idString = (isString) ? $"s = {match.Groups[3]}" : $"i={match.Groups[2]}";
-            var builtString = $"ns={match.Groups[1]};" + idString;
-
-            //Create a NodeId and test it
+            var idStr = (isString) ? $"s={match.Groups[3]}" : $"i={match.Groups[2]}";
+            var builtStr = $"ns={match.Groups[1]};" + idStr;
+            NodeId nodeId = null;
             try
             {
-                nodeId = new NodeId(builtString);
-            }catch(Exception e)
-            {
-                Console.WriteLine("NodeId creation error: " + e.Message);
+                nodeId = new NodeId(builtStr);
             }
+            catch (ServiceResultException exc)
+            {
+                switch (exc.StatusCode)
+                {
+                    case StatusCodes.BadNodeIdInvalid:
+                        throw new Exception("Wrong Type Error: String is not formatted as expected (number-yyy where yyy can be string or number or guid)");
+                    default:
+                        throw new Exception(exc.Message);
+                }
+            }
+
             return nodeId;
         }
     }

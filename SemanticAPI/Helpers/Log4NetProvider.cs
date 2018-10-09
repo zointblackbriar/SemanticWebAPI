@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Xml;
 using Microsoft.Extensions.Logging;
@@ -34,7 +35,9 @@ namespace SemanticAPI.Helpers
 
         public void Dispose()
         {
-            throw new System.NotImplementedException();
+            _loggersConcurrent.Clear();
+            if(_loggersConcurrent != null)
+                throw new Exception("Something is wrong after clearing ");
         }
     }
 }

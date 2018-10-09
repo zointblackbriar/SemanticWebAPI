@@ -1,5 +1,4 @@
-﻿//Marco Stefano Scroppo
-//OPC UA Web Application
+﻿//OPC UA UniCT
 //@Source : https://github.com/OPCUAUniCT
 
 using System;
@@ -125,7 +124,7 @@ namespace SemanticAPI.OPCUAModel
                 dataTypeDescriptionNodeId, //the starting node is a DataTypeDescription
                 0u,
                 BrowseDirection.Inverse, //It is an inverse Reference 
-                ReferenceTypeIds.HasComponent, //So it is ComponentOf
+                ReferenceTypeIds.HasComponent, 
                 true,
                 (uint)NodeClass.Variable,
                 out var continuationPoint,

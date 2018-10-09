@@ -14,9 +14,9 @@ namespace SemanticAPI.Entities
         public string LastName { get; set; }
         //username
         public string UserName { get; set; }
-        //passwordHash
-        public byte[] PasswordHash { get; set; }
-        //passwordSalt
-        public byte[] PasswordSalt { get; set; }
+
+        public string Password { get; set; }
+
+        public string Token { get; set; }
     }
 }

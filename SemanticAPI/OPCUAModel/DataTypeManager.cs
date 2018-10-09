@@ -1,20 +1,23 @@
-﻿//Marco Stefano Scroppo
-//OPC UA Web Application
-//@Source : https://github.com/OPCUAUniCT
-
-
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
+using Newtonsoft.Json.Schema.Generation;
 using NJsonSchema;
 using Opc.Ua;
 using Opc.Ua.Client;
-using SemanticAPI.OPCUADataType;
-using Newtonsoft.Json.Schema;
+using SemanticAPI.OPCUAModel;
+using SemanticAPI.Models.OPCUADataType;
+using SemanticAPI.Models.DataSet;
 
 using TypeInfo = Opc.Ua.TypeInfo;
-using System.Text.RegularExpressions;
-using System.Linq;
 
 namespace SemanticAPI.OPCUAModel
 {
@@ -29,15 +32,15 @@ namespace SemanticAPI.OPCUAModel
 
         #region Read UA Value
 
-        public SchemaBaseType GetSchemaType(VariableNode variableNode, bool generateSchema = true)
+        public UaValue GetUaValue(VariableNode variableNode, bool generateSchema = true)
         {
             DataValue dataValue = _session.ReadValue(variableNode.NodeId);
-            var SchemaType = GetSchemaType(variableNode, dataValue, generateSchema);
-            SchemaType.StatusCode = dataValue.StatusCode;
-            return SchemaType;
+            var uaValue = GetUaValue(variableNode, dataValue, generateSchema);
+            uaValue.StatusCode = dataValue.StatusCode;
+            return uaValue;
         }
 
-        public SchemaBaseType GetSchemaType(VariableNode variableNode, DataValue dataValue, bool generateSchema)
+        public UaValue GetUaValue(VariableNode variableNode, DataValue dataValue, bool generateSchema)
         {
             var value = new Variant(dataValue.Value);
             BuiltInType type = TypeInfo.GetBuiltInType(variableNode.DataType, _session.SystemContext.TypeTable);
@@ -90,13 +93,13 @@ namespace SemanticAPI.OPCUAModel
             return null;
         }
 
-        private SchemaBaseType SerializeBoolean(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeBoolean(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
                 var jBoolVal = new JValue(value.Value);
                 var schema = (generateSchema) ? new JSchema { Type = JSchemaType.Boolean } : null;
-                return new SchemaType(jBoolVal, schema);
+                return new UaValue(jBoolVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -106,7 +109,7 @@ namespace SemanticAPI.OPCUAModel
                 var schema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arr.Length }, new JSchema { Type = JSchemaType.Boolean }) :
                     null;
 
-                return new SchemaType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -118,17 +121,17 @@ namespace SemanticAPI.OPCUAModel
                 var outerSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, new JSchema { Type = JSchemaType.Boolean }) :
                     null;
 
-                return new SchemaType(jArray, outerSchema);
+                return new UaValue(jArray, outerSchema);
             }
         }
 
-        private SchemaBaseType SerializeInteger(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeInteger(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
                 var jIntVal = new JValue(value.Value);
                 var schema = (generateSchema) ? new JSchema { Type = JSchemaType.Integer } : null;
-                return new SchemaType(jIntVal, schema);
+                return new UaValue(jIntVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -137,7 +140,7 @@ namespace SemanticAPI.OPCUAModel
                 var schema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arr.Length }, new JSchema { Type = JSchemaType.Integer }) :
                     null;
 
-                return new SchemaType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -148,17 +151,17 @@ namespace SemanticAPI.OPCUAModel
 
                 var outerSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, new JSchema { Type = JSchemaType.Integer }) :
                     null;
-                return new SchemaType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaBaseType SerializeByte(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeByte(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
                 var jIntVal = new JValue(value.Value);
                 var schema = (generateSchema) ? new JSchema { Type = JSchemaType.Integer } : null;
-                return new SchemaType(jIntVal, schema);
+                return new UaValue(jIntVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -172,7 +175,7 @@ namespace SemanticAPI.OPCUAModel
                 var schema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { bytes.Length }, new JSchema { Type = JSchemaType.String }) :
                     null;
 
-                return new SchemaType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -183,17 +186,17 @@ namespace SemanticAPI.OPCUAModel
 
                 var outerSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, new JSchema { Type = JSchemaType.Integer }) :
                     null;
-                return new SchemaType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaBaseType SerializeSByte(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeSByte(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
                 var jIntVal = new JValue(value.Value);
                 var schema = (generateSchema) ? new JSchema { Type = JSchemaType.Integer } : null;
-                return new SchemaType(jIntVal, schema);
+                return new UaValue(jIntVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -206,7 +209,7 @@ namespace SemanticAPI.OPCUAModel
                 var jArray = new JArray(byteRepresentations);
                 var schema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { bytes.Length }, new JSchema { Type = JSchemaType.String }) : null;
 
-                return new SchemaType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -216,17 +219,17 @@ namespace SemanticAPI.OPCUAModel
                 var jArr = JArray.Parse(arrStr);
 
                 var outerSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, new JSchema { Type = JSchemaType.Integer }) : null;
-                return new SchemaType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaBaseType SerializeFloat(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeFloat(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
                 var jFloatVal = new JValue(value.Value);
                 var schema = (generateSchema) ? new JSchema { Type = JSchemaType.Number } : null; ;
-                return new SchemaType(jFloatVal, schema);
+                return new UaValue(jFloatVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -234,7 +237,7 @@ namespace SemanticAPI.OPCUAModel
                 var jArray = new JArray(arr);
                 var schema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arr.Length }, new JSchema { Type = JSchemaType.Number }) : null;
 
-                return new SchemaType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -244,17 +247,17 @@ namespace SemanticAPI.OPCUAModel
                 var jArr = JArray.Parse(arrStr);
 
                 var outerSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, new JSchema { Type = JSchemaType.Number }) : null;
-                return new SchemaType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaBaseType SerializeDouble(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeDouble(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
                 var jDoubleVal = new JValue(value.Value);
                 var schema = (generateSchema) ? new JSchema { Type = JSchemaType.Number } : null;
-                return new SchemaType(jDoubleVal, schema);
+                return new UaValue(jDoubleVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -262,7 +265,7 @@ namespace SemanticAPI.OPCUAModel
                 var jArray = new JArray(arr);
                 var schema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arr.Length }, new JSchema { Type = JSchemaType.Number }) : null;
 
-                return new SchemaType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -272,17 +275,17 @@ namespace SemanticAPI.OPCUAModel
                 var jArr = JArray.Parse(arrStr);
 
                 var outerSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, new JSchema { Type = JSchemaType.Number }) : null;
-                return new SchemaType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaBaseType SerializeString(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeString(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
                 var jStringVal = new JValue(value.Value.ToString());
                 var schema = (generateSchema) ? new JSchema { Type = JSchemaType.String } : null;
-                return new SchemaType(jStringVal, schema);
+                return new UaValue(jStringVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -290,7 +293,7 @@ namespace SemanticAPI.OPCUAModel
                 var jArray = new JArray(arr);
                 var schema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arr.Length }, new JSchema { Type = JSchemaType.String }) : null;
 
-                return new SchemaType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -300,11 +303,11 @@ namespace SemanticAPI.OPCUAModel
                 var jArr = JArray.Parse(arrStr);
 
                 var outerSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, new JSchema { Type = JSchemaType.String }) : null;
-                return new SchemaBaseType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaBaseType SerializeStatusCode(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeStatusCode(VariableNode variableNode, Variant value, bool generateSchema)
         {
             var innerSchema = (generateSchema) ? new JSchema
             {
@@ -326,7 +329,7 @@ namespace SemanticAPI.OPCUAModel
                 var statusValue = new PlatformStatusCode((StatusCode)value.Value);
                 var jStringVal = JObject.FromObject(statusValue);
 
-                return new SchemaBaseType(jStringVal, innerSchema);
+                return new UaValue(jStringVal, innerSchema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -336,7 +339,7 @@ namespace SemanticAPI.OPCUAModel
 
                 var schema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arr.Length }, innerSchema) : null;
 
-                return new SchemaBaseType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -348,11 +351,11 @@ namespace SemanticAPI.OPCUAModel
                 var jArr = JArray.Parse(arrStr);
 
                 var outerSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, innerSchema) : null;
-                return new SchemaBaseType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaType SerializeQualifiedName(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeQualifiedName(VariableNode variableNode, Variant value, bool generateSchema)
         {
             var innerSchema = (generateSchema) ? new JSchema
             {
@@ -368,7 +371,7 @@ namespace SemanticAPI.OPCUAModel
             {
                 var jStringVal = JObject.FromObject((QualifiedName)value.Value);
 
-                return new SchemaBaseType(jStringVal, innerSchema);
+                return new UaValue(jStringVal, innerSchema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -377,7 +380,7 @@ namespace SemanticAPI.OPCUAModel
 
                 var schema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arr.Length }, innerSchema) : null;
 
-                return new SchemaBaseType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -389,11 +392,11 @@ namespace SemanticAPI.OPCUAModel
                 var jArr = JArray.Parse(arrStr);
 
                 var outerSchema = (generateSchema) ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, innerSchema) : null;
-                return new SchemaBaseType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaBaseType SerializeNodeId(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeNodeId(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
@@ -405,7 +408,7 @@ namespace SemanticAPI.OPCUAModel
                     nodeIdRepresentation = nodeId.NamespaceIndex + "-" + nodeId.Identifier;
                 var jStringVal = new JValue(nodeIdRepresentation);
                 var schema = (generateSchema) ? new JSchema { Type = JSchemaType.String } : null;
-                return new SchemaBaseType(jStringVal, schema);
+                return new UaValue(jStringVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -421,7 +424,7 @@ namespace SemanticAPI.OPCUAModel
                 var jArray = new JArray(nodeIdRepresentations);
                 var schema = generateSchema ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { nodeIds.Length }, new JSchema { Type = JSchemaType.String }) : null;
 
-                return new SchemaBaseType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -440,11 +443,11 @@ namespace SemanticAPI.OPCUAModel
                 var jArr = JArray.Parse(arrStr);
 
                 var outerSchema = generateSchema ? DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, new JSchema { Type = JSchemaType.String }) : null;
-                return new SchemaBaseType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaType SerializeDiagnosticInfo(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeDiagnosticInfo(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
@@ -488,7 +491,7 @@ namespace SemanticAPI.OPCUAModel
                         { "InnerDiagnosticInfo", new JSchema { Reference = new Uri("$diagn_info") } }
                     }
                 } : null;
-                return new SchemaBaseType(jStringVal, schema);
+                return new UaValue(jStringVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -537,7 +540,7 @@ namespace SemanticAPI.OPCUAModel
                     }
                 }) : null;
 
-                return new SchemaBaseType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -590,11 +593,11 @@ namespace SemanticAPI.OPCUAModel
                     }
                 }) : null;
 
-                return new SchemaBaseType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaType SerializeLocalizedText(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeLocalizedText(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
@@ -614,7 +617,7 @@ namespace SemanticAPI.OPCUAModel
                         { "Text", new JSchema { Type = JSchemaType.String } }
                     }
                 } : null;
-                return new SchemaBaseType(jStringVal, schema);
+                return new UaValue(jStringVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -639,7 +642,7 @@ namespace SemanticAPI.OPCUAModel
                     }
                 }) : null;
 
-                return new SchemaBaseType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -668,11 +671,11 @@ namespace SemanticAPI.OPCUAModel
                     }
                 }) : null;
 
-                return new SchemaBaseType(jArr, outerSchema);
+                return new UaValue(jArr, outerSchema);
             }
         }
 
-        private SchemaType SerializeExpandedNodeId(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeExpandedNodeId(VariableNode variableNode, Variant value, bool generateSchema)
         {
             var schema = (generateSchema) ? new JSchema()
             {
@@ -703,7 +706,7 @@ namespace SemanticAPI.OPCUAModel
                 };
                 var jStringVal = JObject.Parse(JsonConvert.SerializeObject(expNodeId));
 
-                return new SchemaBaseType(jStringVal, schema);
+                return new UaValue(jStringVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -729,7 +732,7 @@ namespace SemanticAPI.OPCUAModel
                     };
                     jArray.Add(JObject.Parse(JsonConvert.SerializeObject(expNodeId)));
                 }
-                return new SchemaType(jArray, DataTypeSchemaGenerator.GenerateSchemaForArray(new int[] { expandedNodeIds.Length }, schema));
+                return new UaValue(jArray, DataTypeSchemaGenerator.GenerateSchemaForArray(new int[] { expandedNodeIds.Length }, schema));
             }
             else
             {
@@ -760,23 +763,23 @@ namespace SemanticAPI.OPCUAModel
                 var arr = (new Matrix(expNodeIdRepresentation, BuiltInType.ExpandedNodeId, matrix.Dimensions)).ToArray();
                 var arrStr = JsonConvert.SerializeObject(arr);
                 var jArr = JArray.Parse(arrStr);
-                return new SchemaType(jArr, DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, schema));
+                return new UaValue(jArr, DataTypeSchemaGenerator.GenerateSchemaForArray(matrix.Dimensions, schema));
             }
         }
 
-        private SchemaType SerializeXmlElement(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeXmlElement(VariableNode variableNode, Variant value, bool generateSchema)
         {
             //TODO:The stack is not able to handle xml elements. Bug maybe.
             throw new NotImplementedException();
         }
 
-        private SchemaType SerializeByteString(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeByteString(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
                 var jStringVal = new JValue(Convert.ToBase64String((byte[])value.Value));
                 var schema = (generateSchema) ? new JSchema { Type = JSchemaType.String } : null;
-                return new SchemaType(jStringVal, schema);
+                return new UaValue(jStringVal, schema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -789,7 +792,7 @@ namespace SemanticAPI.OPCUAModel
                 var jArray = new JArray(newArr);
                 var schema = generateSchema ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arr.Length }, new JSchema { Type = JSchemaType.String }) : null;
 
-                return new SchemaType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -797,7 +800,7 @@ namespace SemanticAPI.OPCUAModel
             }
         }
 
-        private SchemaType SerializeEnumeration(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeEnumeration(VariableNode variableNode, Variant value, bool generateSchema)
         {
             int enstrreturn = GetEnumStrings(variableNode.DataType, out var enumString, out var enumValues);
 
@@ -840,7 +843,7 @@ namespace SemanticAPI.OPCUAModel
             {
                 var valueOut = GetEnumValue(value, enstrreturn, enumString, enumValues);
 
-                return new SchemaType(valueOut, innerSchema);
+                return new UaValue(valueOut, innerSchema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -850,7 +853,7 @@ namespace SemanticAPI.OPCUAModel
 
                 var schema = generateSchema ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arr.Length }, innerSchema) : null;
 
-                return new SchemaType(jArray, schema);
+                return new UaValue(jArray, schema);
             }
             else
             {
@@ -858,7 +861,7 @@ namespace SemanticAPI.OPCUAModel
             }
         }
 
-        private SchemaType SerializeExtensionObject(VariableNode variableNode, Variant value, bool generateSchema)
+        private UaValue SerializeExtensionObject(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)
             {
@@ -876,7 +879,7 @@ namespace SemanticAPI.OPCUAModel
                     string descriptionId = ReadService(descriptionNodeId, Attributes.Value)[0].Value.ToString();
 
                     //Start parsing
-                    var parser = new ParserXPath(dictionary);
+                    var parser = new XMLParser(dictionary);
 
                     return parser.Parse(descriptionId, (ExtensionObject)value.Value, _session.MessageContext, generateSchema);
                 }
@@ -885,7 +888,7 @@ namespace SemanticAPI.OPCUAModel
                 var jValue = JObject.FromObject(structStandard);
                 var schema4 = generateSchema ? JsonSchema4.FromSampleJson(jValue.ToString()) : null;
                 var jSchema = generateSchema ? JSchema.Parse(schema4.ToJson()) : null;
-                return new SchemaType(jValue, jSchema);
+                return new UaValue(jValue, jSchema);
             }
             else if (variableNode.ValueRank == 1)
             {
@@ -899,19 +902,19 @@ namespace SemanticAPI.OPCUAModel
 
                     string descriptionId = ReadService(descriptionNodeId, Attributes.Value)[0].Value.ToString();
 
-                    var parser = new ParserXPath(dictionary);
+                    var parser = new XMLParser(dictionary);
                     var jArray = new JArray();
                     var arrayValue = (Array)value.Value;
 
-                    var SchemaType = new SchemaType();
+                    var uaValue = new UaValue();
 
                     foreach (var x in arrayValue)
                     {
-                        SchemaType = parser.Parse(descriptionId, (ExtensionObject)x, _session.MessageContext, generateSchema);
-                        jArray.Add(SchemaType.Value);
+                        uaValue = parser.Parse(descriptionId, (ExtensionObject)x, _session.MessageContext, generateSchema);
+                        jArray.Add(uaValue.Value);
                     }
-                    var jSchema = generateSchema ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arrayValue.Length }, SchemaType.Schema) : null;
-                    return new SchemaType(jArray, jSchema);
+                    var jSchema = generateSchema ? DataTypeSchemaGenerator.GenerateSchemaForArray(new[] { arrayValue.Length }, uaValue.Schema) : null;
+                    return new UaValue(jArray, jSchema);
                 }
                 else
                 {
@@ -919,7 +922,7 @@ namespace SemanticAPI.OPCUAModel
                     var jArray = JArray.FromObject(structArray);
                     var schema4 = generateSchema ? JsonSchema4.FromSampleJson(jArray.ToString()) : null;
                     var jSchema = generateSchema ? JSchema.Parse(schema4.ToJson()) : null;
-                    return new SchemaType(jArray, jSchema);
+                    return new UaValue(jArray, jSchema);
                 }
             }
             else
@@ -1141,7 +1144,7 @@ namespace SemanticAPI.OPCUAModel
         {
             int actualValueRank = variableState.Value.CalculateActualValueRank();
             if (!ValueRanks.IsValid(actualValueRank, variableNode.ValueRank))
-                throw new ValueToWriteTypeException("Rank of the Value provided does not match the Variable ValueRank");
+                throw new Exception("Rank of the Value provided does not match the Variable ValueRank");
 
             OPCUAJsonDecoder platformJsonDecoder;
             var type = TypeInfo.GetBuiltInType(variableNode.DataType, _session.SystemContext.TypeTable);
@@ -1193,5 +1196,4 @@ namespace SemanticAPI.OPCUAModel
             structureChanged = statusCode.StructureChanged;
         }
     }
-}
 }

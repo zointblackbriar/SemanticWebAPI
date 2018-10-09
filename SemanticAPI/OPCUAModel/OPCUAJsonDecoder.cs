@@ -1,5 +1,4 @@
-﻿//Marco Stefano Scroppo
-//OPC UA Web Application
+﻿//OPC UA Web Application
 //@Source : https://github.com/OPCUAUniCT
 
 
@@ -8,12 +7,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Opc.Ua;
 using Opc.Ua.Client;
-using SemanticAPI.OPCUASemantic;
+using SemanticAPI.OPCUAModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using TypeInfo = Opc.Ua.TypeInfo;
+
 
 namespace SemanticAPI.OPCUAModel
 {
@@ -881,7 +882,7 @@ namespace SemanticAPI.OPCUAModel
                 var dictionary = analyzer.GetDictionary(descriptionNodeId);
                 var descriptionId = m_session.ReadNodeAttribute(descriptionNodeId, Attributes.Value)[0].Value.ToString();
 
-                var structuredEncoder = new StructuredEncoder(dictionary);
+                var structuredEncoder = new OPCUAStructuredEncoder(dictionary);
                 var value = structuredEncoder.BuildExtensionObjectFromJsonObject(descriptionId, jObject, m_session.MessageContext, encodingNodeId);
 
                 return value;
@@ -909,12 +910,12 @@ namespace SemanticAPI.OPCUAModel
 
             if (m_currentDataType.NamespaceIndex != 0)
             {
-                var analyzer = new TypeControl(m_session);
+                var analyzer = new DataTypeAnalyzer(m_session);
                 var encodingNodeId = analyzer.GetDataTypeEncodingNodeId(m_currentDataType);
                 var descriptionNodeId = analyzer.GetDataTypeDescriptionNodeId(encodingNodeId);
                 string dictionary = analyzer.GetDictionary(descriptionNodeId);
                 string descriptionId = m_session.ReadNodeAttribute(descriptionNodeId, Attributes.Value)[0].Value.ToString();
-                StructuredEncoder structuredEncoder = new StructuredEncoder(dictionary);
+                OPCUAStructuredEncoder structuredEncoder = new OPCUAStructuredEncoder(dictionary);
                 foreach (var jObj in jArray)
                 {
                     extensionObjectCollection.Add(structuredEncoder.BuildExtensionObjectFromJsonObject(descriptionId, jObj.ToObject<JObject>(),
