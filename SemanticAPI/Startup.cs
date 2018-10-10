@@ -19,7 +19,7 @@ using SemanticAPI.Models.AuthCredentials;
 using SemanticAPI.Models.Options;
 using SemanticAPI.MVC;
 using SemanticAPI.OPCUAModel;
-using SemanticAPI.Auth;
+//using SemanticAPI.Auth;
 using SemanticAPI.Services;
 
 namespace SemanticAPI
@@ -73,7 +73,7 @@ namespace SemanticAPI
             services.Configure<ServerOptions>(Configuration.GetSection("ServerOptions"));
 
             //Register server specific for the platform
-            services.AddTransient<ITokenManager, JwtManager>();
+            //services.AddTransient<ITokenManager, JwtManager>();
             //Register server specific for the platform
             services.AddScoped<IUserService, UserService>();
             //Register a singleton service managing OPC UA interactions

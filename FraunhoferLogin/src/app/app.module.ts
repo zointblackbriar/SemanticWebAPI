@@ -12,19 +12,30 @@ import { routing }        from './app.routing';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
-import { OpcuainfoComponent} from "./opcuainfo/opcuainfo.component";
+import { OpcuaComponent} from "./opcua";
+import {Routes} from "@angular/router";
+import {DataTablesModule} from "angular-datatables";
+
+// const appRoutes : Routes = [
+//     {
+//         path: '/opcua',
+//         component : OpcuaComponent
+//     }
+// ];
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
+        DataTablesModule,
         routing
     ],
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        OpcuaComponent,
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

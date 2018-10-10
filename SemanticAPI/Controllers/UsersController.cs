@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using SemanticAPI.Auth;
-using SemanticAPI.Helpers;
-using SemanticAPI.Models.Options;
-using SemanticAPI.Dtos;
+//using SemanticAPI.Auth;
 using SemanticAPI.Entities;
 using SemanticAPI.Services;
-using SemanticAPI.Entities;
 
 
 namespace SemanticAPI.Controllers
@@ -33,15 +19,15 @@ namespace SemanticAPI.Controllers
         private IUserService _userService;
         //private IMapper _mapper;
         //private readonly AppSettings _appSettings;
-        private ITokenManager _jwtManager;
+        //private ITokenManager _jwtManager;
 
-
-        public UsersController(IUserService userService, ITokenManager jwtManager)
+        //ITokenManager jwtManager
+        public UsersController(IUserService userService)
         {
             _userService = userService;
             //_mapper = mapper;
             //_appSettings = appSettings.Value;
-            _jwtManager = jwtManager;
+            //_jwtManager = jwtManager;
         }
 
 

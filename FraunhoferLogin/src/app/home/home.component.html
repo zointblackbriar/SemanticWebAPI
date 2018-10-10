@@ -1,24 +1,25 @@
 ﻿<div class="container">
+    <!--<div class="text-center">-->
+        <!--<img src="../../../images/semanticweb.jpeg" align="middle" alt="Semantic Web">-->
+    <!--</div>-->
+
     <div class="jumbotron">
-        <h1>Home</h1>
-        <p>Welcome to Fraunhofer OPC UA Test Page</p>
-        <p> You can see the result of Semantic Web Service</p>
+            <h1>Semantic Web</h1>
+            <p>Welcome to Fraunhofer OPC UA Test Page</p>
+            <p> You can see the result of Semantic Web Service</p>
     </div>
 </div>
 <div class="container">
 <div class="row">
     <div class="col-lg-6">
         <div>
-            <p>The following users are authenticated from secure api end point:</p>
+            <p>The following users are authenticated via a JWT end point:</p>
             <ul>
                 <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-                <p>We need to put here the result</p>
-                <p> If you want to log out click here </p>
             </ul>
             <ul>
                 <p>
                     <button class="red"><a class="red" [routerLink]="['/login']">Logout</a></button>
-
                 </p>
 
             </ul>
@@ -27,11 +28,10 @@
     </div>
 
     <div class="col-lg-6">
-        <h1>OPC UA Results will be displayed under a different link </h1>
-        <p>This page uses JWT Authentication which is a similar way of OAuth Authentication</p>
-        <p>To be continued </p>
+        <h1> OPC UA Results will be displayed under a different link </h1>
+        <p> This page uses JWT Authentication which is a similar way of OAuth Authentication </p>
         <p>
-            <button class="red"><a class="red" [routerLink]="['/opcua']">OPCUA Info Page</a></button>
+            <button disabled="loading" class="red"><a class="red" [routerLink]="['/opcua']">OPCUA Info Page</a></button>
         </p>
 
     </div>
