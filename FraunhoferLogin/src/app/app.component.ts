@@ -1,6 +1,7 @@
 ﻿import {Component, NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {OpcuaInterceptor} from './opcua/opcua.interceptor';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({

@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
 //import decode from 'jwt-decode';
 import {JwtHelperService} from '@auth0/angular-jwt'
+import {catchError} from "rxjs/operators";
+import {HttpHeaders} from "@angular/common/http";
+
+
 
 @Injectable()
 export class OpcuaService {
     //here is token service
+    connectUrl: string = 'http://localhost:4000';
 
     constructor(public jwtHelper : JwtHelperService){}
     public getToken() : string {
@@ -20,4 +25,8 @@ export class OpcuaService {
         console.log("Token is expired or not", this.jwtHelper.isTokenExpired());
         return this.jwtHelper.isTokenExpired();
     }
+
+
+
+
 }

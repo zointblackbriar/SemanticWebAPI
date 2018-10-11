@@ -20,6 +20,7 @@
     "angular-6-datatable": "^0.8.0",
     "angular-datatables": "^6.0.1",
     "core-js": "^2.5.5",
+    "datatables.net-buttons-dt": "^1.5.4",
     "jwt-decode": "latest",
     "rxjs": "^6.1.0",
     "zone.js": "^0.8.26"

@@ -42,7 +42,7 @@ namespace SemanticAPI.Controllers
         }
 
         //Get method for all server option parameters
-        [HttpGet("data-sets")]
+        [HttpGet("serverconf")]
         public IActionResult getDataSets()
         {
             return Ok(_uaServers);
@@ -50,7 +50,7 @@ namespace SemanticAPI.Controllers
 
 
         //Rest request for node_id
-        [HttpGet("data-sets/{DataSetID:int}/nodes/{node_id:regex(^\\d+-(?:(\\d+)|(.+))$)?}")]
+        [HttpGet("serverconf/{DataSetID:int}/allnodes/{node_id:regex(^\\d+-(?:(\\d+)|(.+))$)?}")]
         public async Task<IActionResult> GetNode(int DataSetID, string node_id = "0-85")
         {
 
@@ -174,7 +174,7 @@ namespace SemanticAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost("data-sets/{DataSetID:int}/nodes/{node_id:regex(^\\d+-(?:(\\d+)|(.+))$)?}")]
+        [HttpPost("serverconf/{DataSetID:int}/allnodes/{node_id:regex(^\\d+-(?:(\\d+)|(.+))$)?}")]
         public async Task<IActionResult> InsertNodeAsync(int DataSetID, string node_id, [FromBody] VariableState state)
         {
             if (state == null || !state.IsValid)
