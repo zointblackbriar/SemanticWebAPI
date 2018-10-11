@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using Opc.Ua;
 using Opc.Ua.Client;
 using Opc.Ua.Configuration;
-using SemanticAPI.Controllers;
 using SemanticAPI.Models.OPCUADataType;
 using SemanticAPI.Models.DataSet;
-//TODO Logger class is supposed to be added.
 
 namespace SemanticAPI.OPCUAModel
 {

@@ -28,6 +28,9 @@ export class OpcuaComponent implements OnInit, OnDestroy {
 
     connectUrl: string = 'http://localhost:4000';
     arrayNodes : any = [];
+    valuesOfNode: any = [];
+    statusOfNode: any = [];
+    //arrayNodes: any;
     public data : Object;
     public temp_var : Object;
     //opcuaForm: FormGroup;
@@ -37,21 +40,11 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     connectionString: string;
     public errorMsg: any;
 
-
-
-
-
     constructor(public http: HttpClient){}
         ngAfterViewInit() : void
         {
                 //this.fetchData();
                 console.log("ngAfterViewInit");
-                this.dtOptions = {
-                    pagingType: 'full_numbers',
-                    pageLength: 2,
-                    dom : 'Bfrtip',
-                };
-
         }
 
     ngOnDestroy(): void {
@@ -67,17 +60,13 @@ export class OpcuaComponent implements OnInit, OnDestroy {
                 this.arrayNodes = JSON.stringify(this.data);
                 console.log(this.data);
                 this.arrayNodes = JSON.parse(this.arrayNodes);
+                this.valuesOfNode = this.arrayNodes['value'];
+                this.statusOfNode = this.arrayNodes['status'];
+                console.log("valuesOfNode" + this.valuesOfNode);
+                console.log("statusOfNode" + this.statusOfNode);
                 // console.log(this.arrayNodes);
                 // console.log(this.arrayNodes['node-id']);
                 // console.log(this.arrayNodes['name']);
-                // console.log(this.arrayNodes['type']);
-                // console.log(this.arrayNodes['references'][0]);
-                // console.log(this.arrayNodes['references'][1]);
-                // console.log(this.arrayNodes['references'][2]);
-                //
-                // console.log(this.arrayNodes['references'][3]);
-                //
-                // console.log(this.arrayNodes['references'][4]);
                 },
                 (err: HttpErrorResponse) => {
                     this.errorMsg = err;
@@ -86,9 +75,8 @@ export class OpcuaComponent implements OnInit, OnDestroy {
             );
     }
 
+    //To control your form
     //get f() { return this.opcuaForm.controls; }
-
-
 
     setOpcUA() {
         console.log("hello SendCustomize");
@@ -108,6 +96,7 @@ export class OpcuaComponent implements OnInit, OnDestroy {
         console.log("Post Request");
         this.connectionString = this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.addressInfo;
         console.log("test String", this.connectionString);
+        console.log("body of Request", this.bodyOfRequest);
         return this.http.post(this.connectionString, this.bodyOfRequest, httpOptions)
 
             .subscribe( data => {
@@ -121,6 +110,14 @@ export class OpcuaComponent implements OnInit, OnDestroy {
 
 
     ngOnInit(): void {
+        this.dtOptions = {
+            pagingType: 'full_numbers',
+            paging : true,
+            ordering : true,
+            info : true,
+            pageLength: 2,
+            dom : 'Bfrtip',
+        };
 
     }
 }

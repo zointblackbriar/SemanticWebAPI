@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Text.RegularExpressions;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
-using Newtonsoft.Json.Schema.Generation;
 using NJsonSchema;
 using Opc.Ua;
 using Opc.Ua.Client;
-using SemanticAPI.OPCUAModel;
 using SemanticAPI.Models.OPCUADataType;
 using SemanticAPI.Models.DataSet;
 

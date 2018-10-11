@@ -1,25 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 using SemanticAPI.Helpers;
-using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Options;
-using SemanticAPI.Models.DataSet;
-using SemanticAPI.Models.OPCUADataType;
-using SemanticAPI.Models.AuthCredentials;
 using SemanticAPI.Models.Options;
-using SemanticAPI.MVC;
 using SemanticAPI.OPCUAModel;
-//using SemanticAPI.Auth;
 using SemanticAPI.Services;
 
 namespace SemanticAPI
@@ -39,9 +28,6 @@ namespace SemanticAPI
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("JwtOptions");
             services.Configure<AppSettings>(appSettingsSection);
-            //Add service related to IOptions feature in Controllers
-
-
 
             // configure jwt authentication
             var appSettings = appSettingsSection.Get<AppSettings>();
@@ -62,8 +48,6 @@ namespace SemanticAPI
                     ValidateAudience = false,
                     ValidateLifetime = false,
                     ValidateIssuerSigningKey = true,
-                    //ValidIssuer = Configuration["JwtOptions:Issuer"],
-                    //ValidAudience = Configuration["JwtOptions:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(Configuration["JwtOptions:SecurityKey"]))
                 };
             });
@@ -72,8 +56,6 @@ namespace SemanticAPI
             services.Configure<JwtOptions>(Configuration.GetSection("JwtOptions"));
             services.Configure<ServerOptions>(Configuration.GetSection("ServerOptions"));
 
-            //Register server specific for the platform
-            //services.AddTransient<ITokenManager, JwtManager>();
             //Register server specific for the platform
             services.AddScoped<IUserService, UserService>();
             //Register a singleton service managing OPC UA interactions
@@ -103,8 +85,6 @@ namespace SemanticAPI
                 .AllowCredentials());
 
             app.UseAuthentication();
-
-            //app.CheckToken();
 
             app.UseMvc();
         }
