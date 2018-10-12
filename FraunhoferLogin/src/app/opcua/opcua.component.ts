@@ -39,6 +39,7 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     bodyOfRequest: any;
     connectionString: string;
     public errorMsg: any;
+    //materialIcon: any;
 
     constructor(public http: HttpClient){}
         ngAfterViewInit() : void
@@ -50,29 +51,49 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.dtTrigger.unsubscribe();
     }
-    public fetchData()
+    public fetchData(materialIcon: any)
     {
-        //{responseType:'json'})
-        return this.http.get<any>(this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.addressInfo)
-            .subscribe( (res:Response) => {
-                this.data = res;
-                this.temp_var = true;
-                this.arrayNodes = JSON.stringify(this.data);
-                console.log(this.data);
-                this.arrayNodes = JSON.parse(this.arrayNodes);
-                this.valuesOfNode = this.arrayNodes['value'];
-                this.statusOfNode = this.arrayNodes['status'];
-                console.log("valuesOfNode" + this.valuesOfNode);
-                console.log("statusOfNode" + this.statusOfNode);
-                // console.log(this.arrayNodes);
-                // console.log(this.arrayNodes['node-id']);
-                // console.log(this.arrayNodes['name']);
-                },
-                (err: HttpErrorResponse) => {
-                    this.errorMsg = err;
-                    console.log(err.message);
+        if(materialIcon == null)
+        {
+            console.log("addressinfo not null");
+            //{responseType:'json'})
+            return this.http.get<any>(this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.addressInfo)
+                .subscribe( (res:Response) => {
+                        this.data = res;
+                        this.temp_var = true;
+                        this.arrayNodes = JSON.stringify(this.data);
+                        console.log(this.data);
+                        this.arrayNodes = JSON.parse(this.arrayNodes);
+                        this.valuesOfNode = this.arrayNodes['value'];
+                        this.statusOfNode = this.arrayNodes['status'];
+                        console.log("valuesOfNode" + this.valuesOfNode);
+                        console.log("statusOfNode" + this.statusOfNode);
+                    },
+                    (err: HttpErrorResponse) => {
+                        this.errorMsg = err;
+                        console.log(err.message);
+                    }
+                );
+        } else
+        {
+            console.log("materialIcon not null");
+
+            return this.http.get<any>(this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + materialIcon)
+                .subscribe( (res:Response) => {
+                    this.data = res;
+                    this.temp_var = true;
+                    this.arrayNodes = JSON.stringify(this.data);
+                    this.arrayNodes = JSON.parse(this.arrayNodes);
+                    this.valuesOfNode = this.arrayNodes['value'];
+                    this.statusOfNode = this.arrayNodes['status'];
+                    console.log(this.data);
+                },   (err: HttpErrorResponse) => {
+                        this.errorMsg = err;
+                        console.log(err.message);
                 }
             );
+        }
+
     }
 
     //To control your form
@@ -105,9 +126,6 @@ export class OpcuaComponent implements OnInit, OnDestroy {
                 error => this.errorMsg = error
             );
     }
-
-
-
 
     ngOnInit(): void {
         this.dtOptions = {

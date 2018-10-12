@@ -10,15 +10,14 @@
 <br><br><br><br>
 
 <div class="test">
-<h2>OPC UA Reading Request for All Structures</h2>
+<h2>OPC UA Reading and Writing Requests for all types of data</h2>
     <!-- there is an error in form-->
         <div class="form-group">
 
             <!--<label for="addressspace">OPCUA Node ID</label>-->
-            <p>ID: 0 -- Dynamic Server</p>
+            <p>ID: 0 -- Dynamic Server Mobile IT</p>
             <p>ID: 1 -- NodeOPCUA Server</p>
-            <p>ID: 2 -- Dynamic Server Mobile IT</p>
-            <p>ID: 3 -- UaNETServer </p>
+            <p>ID: 2 -- UaNETServer </p>
             <br>
             <p>Please configure your Server which you want to connect</p>
             <div class="ServerConf" align="center">
@@ -72,12 +71,11 @@
         </thead>
         <p></p>
         <tbody *ngIf="this.data?.length != 0">
-            <!--<tr *ngFor="let opcuanode of arrayNodes.references">-->
             <tr *ngFor="let opcuanode of arrayNodes.references">
-                <td>{{ opcuanode['node-id'] }}</td>
+                <!--<td>{{ opcuanode.nodeid }}</td>-->
+                <td><i class="material-icons" style="color:red" (click)="fetchData(opcuanode['node-id'])">{{ opcuanode['node-id'] }}</i></td>
                 <td>{{ opcuanode['name'] }}</td>
                 <td>{{ opcuanode['Type'] }}</td>
-                <!--<td> {{opcuanode['value']}} </td>-->
                 <td>{{ opcuanode['relationship'] }}</td>
             </tr>
 

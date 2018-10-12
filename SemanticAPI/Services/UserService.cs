@@ -22,7 +22,6 @@ namespace SemanticAPI.Services
     {
         private List<User> _users = new List<User>
         {
-            //new User {Id = 1, FirstName = "Test", LastName = "User", UserName="test", Password="test" },
             new User {Id = 1, FirstName = "Orcun", LastName = "Oruc", UserName="orcun", Password="helloworld" },
             new User {Id = 2, FirstName = "Adrian", LastName = "Singer", UserName="adrian", Password="fraunhofer" }
 
