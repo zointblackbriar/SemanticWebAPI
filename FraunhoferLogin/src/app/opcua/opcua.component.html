@@ -81,7 +81,7 @@
             <tr *ngFor="let opcuanode of arrayNodes.references">
                 <!--<tr *ngFor="let opcuanode of arrayNodes">-->
                 <!--<td>{{ opcuanode.nodeid }}</td>-->
-                <td><i class="material-icons" style="color:red" (click)="fetchData(opcuanode['node-id'])">{{ opcuanode['node-id'] }}</i></td>
+                <td><button><i class="material-icons" style="color:red" (click)="fetchData(opcuanode['node-id'])">{{ opcuanode['node-id'] }}</i></button></td>
                 <td>{{ opcuanode['name'] }}</td>
                 <td>{{ opcuanode['Type'] }}</td>
                 <td>{{ opcuanode['relationship'] }} </td>

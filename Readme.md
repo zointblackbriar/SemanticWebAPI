@@ -15,7 +15,7 @@ HTTP Request.
 You can see a sample view of the project's GUI to handle read Object, Folder and Variable in OPC UA Protocol and write against the Values.
 
 
-https://imgflip.com/gif/2k4ub4
+<a href="https://imgflip.com/gif/2k4ub4"><img src="https://i.imgflip.com/2k4ub4.gif" title="Intro Page"/></a>
 
 
 To be continued
