@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/app/opcua/opcua.component.ts" line="150" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/src/app/opcua/opcua.component.ts" line="151" mnemonic="7" />
     <bookmark url="file://$PROJECT_DIR$/src/app/opcua/opcua.component.html" line="39" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
@@ -51,8 +51,8 @@
       <file leaf-file-name="opcua.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1088">
-              <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+            <state relative-caret-position="136">
+              <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -390,12 +390,12 @@
       <workItem from="1539350521674" duration="2405000" />
       <workItem from="1539356916343" duration="11673000" />
       <workItem from="1539428482548" duration="5780000" />
-      <workItem from="1539593940245" duration="2897000" />
+      <workItem from="1539593940245" duration="3133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109736000" />
+    <option name="totallyTimeSpent" value="109972000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="662" extended-state="6" />
@@ -732,8 +732,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1088">
-          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        <state relative-caret-position="136">
+          <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
         </state>
       </provider>
     </entry>

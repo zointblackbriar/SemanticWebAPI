@@ -52,7 +52,8 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     }
     public fetchData(materialIcon: any)
     {
-        this.globalMaterialIcon = materialIcon;
+        if(materialIcon != null)
+            this.globalMaterialIcon = materialIcon;
         // if(materialIcon == null)
         // {
         //     console.log("addressinfo not null");
