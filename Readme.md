@@ -24,7 +24,7 @@ The architecture is depicted as below:
 ![Architecture Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/OPCUAWebService.png)
 
 
-<p align="center"> ## How to install </p>
+<h1 align="center"> <b><strong> How to install </strong></b></h1>
 
 After you install all the files from the repository, you should type 
 
@@ -61,10 +61,12 @@ The system was tested with the following technologies:
 <p align="center"> <b><strong>Reference of Code</strong></b> </p>
 
 @References 1: https://github.com/OPCUAUniCT/OPCUAWebPlatformUniCT
+
 @References 2: http://jasonwatmore.com/post/2018/06/26/aspnet-core-21-simple-api-for-authentication-registration-and-user-management
+
 @References 3: https://medium.com/codingthesmartway-com-blog/angular-material-part-4-data-table-23874582f23a
 
-<p align="center"> ## Reference of Papers </p>
+<p align="center"> <b><strong>Reference of Papers </strong></b></p>
 
 The foundation ideas of OPC UA Web Platform are discussed in the following papers. The platform described in these papers 
 may differs for some aspects but the concepts are quite similar:
