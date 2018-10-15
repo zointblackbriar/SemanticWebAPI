@@ -21,13 +21,16 @@ You can see a sample view of the project's GUI to handle read Object, Folder and
 The architecture is depicted as below:
 
 
-<p align="center"> ![Architecture Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/OPCUAWebService.png)</p>
+![Architecture Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/OPCUAWebService.png)
 
 
 <p align="center"> ## How to install </p>
 
-After you install all the files from the repository, you should type "dotnet run" under the folder named
-"SemanticAPI"
+After you install all the files from the repository, you should type 
+
+`dotnet run` 
+
+under the folder named "SemanticAPI"
 
 Backend side of the system will be up and running. Then you need to install GUI side with npm commands
 
