@@ -10,3 +10,12 @@ When a web user requires to connect the system, a password and an username need 
 The authentication schema is similar to OAuth authentication which named "JSON Web Token Authentication". In this schema, a token is created
 by server and immediately is sent back to a client. As soon as a client takes a token, a connection could be set up with server with Bearer
 HTTP Request.
+
+
+You can see a sample view of the project's GUI to handle read Object, Folder and Variable in OPC UA Protocol and write against the Values.
+
+
+https://imgflip.com/gif/2k4ub4
+
+
+To be continued

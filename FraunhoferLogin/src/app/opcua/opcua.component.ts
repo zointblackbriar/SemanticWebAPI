@@ -3,7 +3,7 @@
 
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse, HttpParams} from "@angular/common/http";
 import {Response} from "@angular/http";
-import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit, Pipe, PipeTransform} from "@angular/core";
 import {DataTablesModule} from "angular-datatables";
 import {Subject} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
@@ -16,8 +16,7 @@ const httpOptions = {
         'Content-Type':  'application/json'
     })
 };
-
-
+@Pipe({name: 'valuesOfNode'})
 @Component({templateUrl: 'opcua.component.html', styleUrls: ['opcua.component.css'], selector: 'input-form'})
 export class OpcuaComponent implements OnInit, OnDestroy {
     title = 'app';
@@ -39,7 +38,7 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     bodyOfRequest: any;
     connectionString: string;
     public errorMsg: any;
-    //materialIcon: any;
+    globalMaterialIcon: any;
 
     constructor(public http: HttpClient){}
         ngAfterViewInit() : void
@@ -53,6 +52,7 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     }
     public fetchData(materialIcon: any)
     {
+        this.globalMaterialIcon = materialIcon;
         if(materialIcon == null)
         {
             console.log("addressinfo not null");
@@ -61,13 +61,20 @@ export class OpcuaComponent implements OnInit, OnDestroy {
                 .subscribe( (res:Response) => {
                         this.data = res;
                         this.temp_var = true;
+                        console.log("this.data", this.data);
+                        //this.arrayNodes = this.data;
                         this.arrayNodes = JSON.stringify(this.data);
-                        console.log(this.data);
                         this.arrayNodes = JSON.parse(this.arrayNodes);
+                        // this.valuesOfNode.push(this.arrayNodes);
                         this.valuesOfNode = this.arrayNodes['value'];
                         this.statusOfNode = this.arrayNodes['status'];
-                        console.log("valuesOfNode" + this.valuesOfNode);
-                        console.log("statusOfNode" + this.statusOfNode);
+
+                        // console.log(this.arrayNodes);
+                        //
+                        // this.valuesOfNode = JSON.stringify(this.arrayNodes['value']);
+                        // this.statusOfNode = JSON.stringify(this.arrayNodes['status']);
+                        // console.log("valuesOfNode" + this.valuesOfNode);
+                        // console.log("statusOfNode" + this.statusOfNode);
                     },
                     (err: HttpErrorResponse) => {
                         this.errorMsg = err;
@@ -82,10 +89,13 @@ export class OpcuaComponent implements OnInit, OnDestroy {
                 .subscribe( (res:Response) => {
                     this.data = res;
                     this.temp_var = true;
-                    this.arrayNodes = JSON.stringify(this.data);
-                    this.arrayNodes = JSON.parse(this.arrayNodes);
+                    this.arrayNodes = JSON.parse(JSON.stringify(this.data));
+                    // this.arrayNodes = JSON.parse(this.arrayNodes);
                     this.valuesOfNode = this.arrayNodes['value'];
                     this.statusOfNode = this.arrayNodes['status'];
+                    console.log('this.valuesOfNode', this.valuesOfNode);
+                    console.log('this.statusOfNode', this.statusOfNode);
+
                     console.log(this.data);
                 },   (err: HttpErrorResponse) => {
                         this.errorMsg = err;
@@ -115,7 +125,7 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     public postData()
     {
         console.log("Post Request");
-        this.connectionString = this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.addressInfo;
+        this.connectionString = this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.globalMaterialIcon;
         console.log("test String", this.connectionString);
         console.log("body of Request", this.bodyOfRequest);
         return this.http.post(this.connectionString, this.bodyOfRequest, httpOptions)

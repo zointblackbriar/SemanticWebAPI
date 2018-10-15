@@ -1,6 +1,13 @@
 ﻿<!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
 <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
 <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<script>
+    $(document).ready(function() {
+        setTimeout(function(){
+            $('#timeout_form').show();
+        }, 2000);
+    });
+</script>
 
 <div class="backbutton">
 <button [disabled]="loading" class="btn btn-primary" [routerLink]="['/home']">Home</button>
@@ -42,7 +49,7 @@
                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             </div>
             <br>
-            <div *ngIf="this.errorMsg" class="alert alert-danger">{{this.errorMsg}}</div>
+            <div id="timeout_form" *ngIf="this.errorMsg" class="alert alert-danger">{{this.errorMsg}}</div>
             <br> <br> <br>
             <div class="fetchButton" align="center">
                 <button [disabled]="loading" (click)="fetchData()" class="btn btn-primary">Fetch Data</button>
@@ -65,34 +72,35 @@
             <th>Node ID (Address Space)</th>
             <th>Name</th>
             <th>Type</th>
+            <th>Relationship</th>
             <!--<th>value</th>-->
-            <th>References</th>
         </tr>
         </thead>
         <p></p>
         <tbody *ngIf="this.data?.length != 0">
             <tr *ngFor="let opcuanode of arrayNodes.references">
+                <!--<tr *ngFor="let opcuanode of arrayNodes">-->
                 <!--<td>{{ opcuanode.nodeid }}</td>-->
                 <td><i class="material-icons" style="color:red" (click)="fetchData(opcuanode['node-id'])">{{ opcuanode['node-id'] }}</i></td>
                 <td>{{ opcuanode['name'] }}</td>
                 <td>{{ opcuanode['Type'] }}</td>
-                <td>{{ opcuanode['relationship'] }}</td>
+                <td>{{ opcuanode['relationship'] }} </td>
             </tr>
-
         </tbody>
+        <!--</tr>-->
         <tbody *ngIf="this.data?.length == 0">
             <tr>
                 <td colspan="3" class="no-data-available">No data!</td>
             </tr>
-        <tbody>
+        </tbody>
     </table>
-    <table id='tableValues' datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover">
-        <thead>
-        <tr>
-            <th>Value</th>
-            <th>Status</th>
-        </tr>
-        </thead>
+    <table id='tableValues' datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover" *ngIf="this.temp_var">
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>Value</th>-->
+            <!--<th>Status</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
         <p></p>
         <!-- nglf check against the object -->
         <!--<tbody *ngFor="let itemopc of valuesOfNode" >-->
@@ -100,9 +108,44 @@
                 <!--<td>{{itemopc }}</td>-->
             <!--</tr>-->
         <!--</tbody>-->
-        <tbody>
+        <thead>
+        <tr>
+            <th *ngIf="valuesOfNode">Value</th>
+            <!--<th>Name</th>-->
+            <!--<th>ArrayDimension</th>-->
+            <!--<th>Description Text</th>-->
+            <!--<th>ValueRank</th>-->
+            <!--<th>DataType Identifier</th>-->
+            <th *ngIf="statusOfNode">Status</th>
+        </tr>
+        </thead>
+        <tbody *ngIf="this.valuesOfNode?.length != 0">
+            <!--<ng-template ngFor let-node2node [ngForOf]="valuesOfNode" let-node2nodeIndex="index">-->
+                <!--<ng-template [ngIf] =  "this.valuesOfNode['Name']?.length != 0"  ngFor let-valuenode [ngForOf]="node2node" let-valuenodeIndex="index">-->
+                <!--<td>{{valuesOfNode}}</td>-->
+                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{ valuesOfNode.Name}}</td>-->
+                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{valuesOfNode.ArrayDimensions}}</td>-->
+                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{valuesOfNode.Description.Text}}</td>-->
+                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{valuesOfNode.ValueRank}}</td>-->
+                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{valuesOfNode.DataType.Identifier}}</td>-->
+                <!--<td>{{valuesOfNode}}</td>-->
+                <!--<td>{{statusOfNode}}</td>-->
+                <!--</ng-template>-->
+            <!--</ng-template>-->
+
+
+        <!--<tr *ngFor="let printValues of object | valuesOfNode">-->
+            <!--<td>{{printValues}}</td>-->
+        <!--</tr>-->
+
             <td>{{valuesOfNode}}</td>
             <td>{{statusOfNode}}</td>
+            <!--<td *ngIf="valuesOfNode.Name">{{ valuesOfNode.Name}}</td>-->
+            <!--<td *ngIf="valuesOfNode['Name']">show if it is not empty</td>-->
+            <!--<td *ngIf="!valuesOfNode">show if it is empty</td>-->
+
+
+
         </tbody>
         <!-- For object translation into ngFor we need angular 6.1 -->
         <!--<tbody *ngFor="let itemopc of valuesOfNode | keyvalue">-->
