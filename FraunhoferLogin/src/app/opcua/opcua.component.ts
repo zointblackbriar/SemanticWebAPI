@@ -54,35 +54,7 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     {
         if(materialIcon != null)
             this.globalMaterialIcon = materialIcon;
-        // if(materialIcon == null)
-        // {
-        //     console.log("addressinfo not null");
-        //     //{responseType:'json'})
-        //     return this.http.get<any>(this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.addressInfo)
-        //         .subscribe( (res:Response) => {
-        //                 this.data = res;
-        //                 this.temp_var = true;
-        //                 console.log("this.data", this.data);
-        //                 //this.arrayNodes = this.data;
-        //                 this.arrayNodes = JSON.stringify(this.data);
-        //                 this.arrayNodes = JSON.parse(this.arrayNodes);
-        //                 // this.valuesOfNode.push(this.arrayNodes);
-        //                 this.valuesOfNode = this.arrayNodes['value'];
-        //                 this.statusOfNode = this.arrayNodes['status'];
-        //
-        //                 // console.log(this.arrayNodes);
-        //                 //
-        //                 // this.valuesOfNode = JSON.stringify(this.arrayNodes['value']);
-        //                 // this.statusOfNode = JSON.stringify(this.arrayNodes['status']);
-        //                 // console.log("valuesOfNode" + this.valuesOfNode);
-        //                 // console.log("statusOfNode" + this.statusOfNode);
-        //             },
-        //             (err: HttpErrorResponse) => {
-        //                 this.errorMsg = err;
-        //                 console.log(err.message);
-        //             }
-        //         );
-        // } else
+
 
             return this.http.get<any>(this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.globalMaterialIcon)
                 .subscribe( (res:Response) => {
