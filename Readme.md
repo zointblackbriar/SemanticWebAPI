@@ -22,28 +22,28 @@ The architecture is depicted as below:
 ![Architecture Design](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Architectural_Design.png)
 
 
-![Big Picture] (https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Big_Picture.png)
+![Big Picture](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Big_Picture.png)
 
 
-![JWT Authentication] (https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/JWT_Authentication.png)
+![JWT Authentication](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/JWT_Authentication.png)
 
 
-![Login Page] (https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/LoginPage.png)
+![Login Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/LoginPage.png)
 
 
-![Intro Page] (https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/IntroPage.png)
+![Intro Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/IntroPage.png)
 
 
-![Configuration Page] (https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Configuration_on_GUI.png)
+![Configuration Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Configuration_on_GUI.png)
 
 
-![Fetch Data] (https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/FetchData.png)
+![Fetch Data](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/FetchData.png)
 
 
-![Browsing on Data] (https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Browsing_on_Data.png)
+![Browsing on Data](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Browsing_on_Data.png)
 
 
-![Edit Node] (https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Edit_Node.png)
+![Edit Node](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Edit_Node.png)
 
 
 
