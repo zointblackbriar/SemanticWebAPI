@@ -57,6 +57,10 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     {
         if(materialIcon != null)
             this.globalMaterialIcon = materialIcon;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6ea12b7a3dc92c129bb9e7c0cdb91f1527c9ce13
 
             return this.http.get<any>(this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.globalMaterialIcon)
                 .subscribe( (res:Response) => {

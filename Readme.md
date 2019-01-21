@@ -15,13 +15,37 @@ HTTP Request.
 You can see a sample view of the project's GUI to handle read Object, Folder and Variable in OPC UA Protocol and write against the Values.
 
 
-<p align="center"> <a  href="https://imgflip.com/gif/2k4ub4"><img src="https://i.imgflip.com/2k4ub4.gif" title="made at imgflip.com"/></a> </p>
-
 
 The architecture is depicted as below:
 
 
-![Architecture Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/OPCUAWebService.png)
+![Architecture Design](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Architectural_Design.png)
+
+
+![Big Picture](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Big_Picture.png)
+
+
+![JWT Authentication](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/JWT_Authentication.png)
+
+
+![Login Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/LoginPage.png)
+
+
+![Intro Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/IntroPage.png)
+
+
+![Configuration Page](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Configuration_on_GUI.png)
+
+
+![Fetch Data](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/FetchData.png)
+
+
+![Browsing on Data](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Browsing_on_Data.png)
+
+
+![Edit Node](https://github.com/zointblackbriar/SemanticWebAPI/blob/master/img/Edit_Node.png)
+
+
 
 
 <h1 align="center"> <b><strong> How to install </strong></b></h1>
