@@ -34,6 +34,7 @@ namespace SemanticAPI.OPCUAModel
             return uaValue;
         }
 
+        //BuiltInDataType to get
         public UaValue GetUaValue(VariableNode variableNode, DataValue dataValue, bool generateSchema)
         {
             var value = new Variant(dataValue.Value);
@@ -118,7 +119,7 @@ namespace SemanticAPI.OPCUAModel
                 return new UaValue(jArray, outerSchema);
             }
         }
-
+        //Integer Serialization for Variable Nodes
         private UaValue SerializeInteger(VariableNode variableNode, Variant value, bool generateSchema)
         {
             if (variableNode.ValueRank == -1)

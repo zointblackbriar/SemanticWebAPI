@@ -22,33 +22,54 @@
         <div class="form-group">
 
             <!--<label for="addressspace">OPCUA Node ID</label>-->
-            <p>ID: 0 -- Dynamic Server Mobile IT</p>
-            <p>ID: 1 -- NodeOPCUA Server</p>
-            <p>ID: 2 -- UaNETServer </p>
+            <!--<p>ID: 0 -- Dynamic Server Mobile IT</p>-->
             <br>
             <p>Please configure your Server which you want to connect</p>
+            <br>
+            <button type="text" (click)="serverConf('0')" [disabled]="loading" class="btn btn-primary btn-block" layout="row" layout-align="center center">Dynamic Server Mobile IT</button>
+            <br>
+            <button (click)="serverConf('1')" [disabled]="loading" class="btn btn-primary btn-block" >NodeOPCUA Server</button>
+            <br>
+            <button (click)="serverConf('2')" [disabled]="loading" class="btn btn-primary btn-block" >UaNETServer</button>
+            <br>
+            <button (click)="serverConf('3')" [disabled]="loading" class="btn btn-primary btn-block" >ProsysServer</button>
+            <br>
+            <button (click)="serverConf('4')" [disabled]="loading" class="btn btn-primary btn-block"  >MatrikonServer</button>
+            <br>
+            <!--<p>ID: 1 &#45;&#45; NodeOPCUA Server</p>-->
+            <!--<p>ID: 2 &#45;&#45; UaNETServer </p>-->
+            <!--<p>ID: 3 &#45;&#45; ProsysServer </p>-->
+            <!--<p>ID: 4 &#45;&#45; MatrikonServer </p>-->
+            <br>
             <div class="ServerConf" align="center">
-                <input type="text"  name="serverinfo" [(ngModel)]="serverInfo" class="form-control" id="serverconf"/>
-                <button (click)="serverConf()" [disabled]="loading" class="btn btn-primary">Configure Server ID</button>
+                <!--<input type="text"  name="serverinfo" [(ngModel)]="serverInfo" class="form-control" id="serverconf" #change/>-->
+                <!--<button (click)="serverConf()" [disabled]="loading" class="btn btn-primary">Configure Server ID</button> -->
                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             </div>
             <br>
-            <p>The following input box is to search address space. Default "0-85"</p>
-            <div class="AddressInfo" align="center">
-                <input type="text"  name="addressinfo" [(ngModel)]="addressInfo" class="form-control" id="addressspace"/>
-                <button (click)="setOpcUA()" [disabled]="loading" class="btn btn-primary">Set Initial Address Space</button>
-                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            </div>
-            <br> <br>
             <p>Please type your value that you want to change</p>
             <p>The format is going to be ----  value: newValue </p>
             <p>Sample format : &#123;	&ldquo;value	&ldquo; 	&#58; &ldquo;2.3333&ldquo;} </p>
             <div class="postData" align="center">
-                <input type="text"  name="writingInfo" [(ngModel)]="bodyOfRequest" class="form-control" id="writingnode"/>
+                <input type="text"  name="writingInfo" [(ngModel)]="writingNode" class="form-control" id="writingnode"/>
                 <button (click)="postData()" [disabled]="loading" class="btn btn-primary">Edit Node Value</button>
                 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
             </div>
             <br>
+            <div class="subscriptionNodes" align="center">
+                <input type="text"  name="subscribingInfo" [(ngModel)]="subscriptionId" class="form-control" id="subscribingnode"/>
+                <button [disabled]="loading" (click)="subscribtionOPCUA()" class="btn btn-primary">Subscribe Data</button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                <br><br><br>
+            </div>
+            <br>
+            <p>The following button is to set root node in an address space. Default "0-85"</p>
+            <div class="AddressInfo" align="center">
+                <!--<input type="text"  name="addressinfo" [(ngModel)]="addressInfo" class="form-control" id="addressspace"/> -->
+                <button (click)="setOpcUA()" [disabled]="loading" class="btn btn-primary">Root Address Space </button>
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </div>
+
             <div id="timeout_form" *ngIf="this.errorMsg" class="alert alert-danger">{{this.errorMsg}}</div>
             <br> <br> <br>
             <div class="fetchButton" align="center">
@@ -57,13 +78,7 @@
                 <br><br><br>
             </div>
 
-
         </div>
-    <!-- for specific error -->
-        <!--<div [hidden]="name.valid || name.pristine"-->
-             <!--class="alert alert-danger">-->
-            <!--OPCUA Address Space is required-->
-        <!--</div>-->
 
 <div style="text-align:left;width:500px;">
     <table id='table' datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover" *ngIf="this.temp_var">
@@ -95,64 +110,23 @@
         </tbody>
     </table>
     <table id='tableValues' datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover" *ngIf="this.temp_var">
-        <!--<thead>-->
-        <!--<tr>-->
-            <!--<th>Value</th>-->
-            <!--<th>Status</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
         <p></p>
-        <!-- nglf check against the object -->
-        <!--<tbody *ngFor="let itemopc of valuesOfNode" >-->
-            <!--<tr *ngIf="this.valuesOfNode?.length != 0">-->
-                <!--<td>{{itemopc }}</td>-->
-            <!--</tr>-->
-        <!--</tbody>-->
         <thead>
         <tr>
             <th *ngIf="valuesOfNode">Value</th>
-            <!--<th>Name</th>-->
-            <!--<th>ArrayDimension</th>-->
-            <!--<th>Description Text</th>-->
-            <!--<th>ValueRank</th>-->
-            <!--<th>DataType Identifier</th>-->
             <th *ngIf="statusOfNode">Status</th>
         </tr>
         </thead>
         <tbody *ngIf="this.valuesOfNode?.length != 0">
-            <!--<ng-template ngFor let-node2node [ngForOf]="valuesOfNode" let-node2nodeIndex="index">-->
-                <!--<ng-template [ngIf] =  "this.valuesOfNode['Name']?.length != 0"  ngFor let-valuenode [ngForOf]="node2node" let-valuenodeIndex="index">-->
-                <!--<td>{{valuesOfNode}}</td>-->
-                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{ valuesOfNode.Name}}</td>-->
-                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{valuesOfNode.ArrayDimensions}}</td>-->
-                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{valuesOfNode.Description.Text}}</td>-->
-                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{valuesOfNode.ValueRank}}</td>-->
-                <!--<td *ngIf="this.valuesOfNode?.length != 0">{{valuesOfNode.DataType.Identifier}}</td>-->
-                <!--<td>{{valuesOfNode}}</td>-->
-                <!--<td>{{statusOfNode}}</td>-->
-                <!--</ng-template>-->
-            <!--</ng-template>-->
-
-
-        <!--<tr *ngFor="let printValues of object | valuesOfNode">-->
-            <!--<td>{{printValues}}</td>-->
-        <!--</tr>-->
-
             <td>{{valuesOfNode}}</td>
             <td>{{statusOfNode}}</td>
-            <!--<td *ngIf="valuesOfNode.Name">{{ valuesOfNode.Name}}</td>-->
-            <!--<td *ngIf="valuesOfNode['Name']">show if it is not empty</td>-->
-            <!--<td *ngIf="!valuesOfNode">show if it is empty</td>-->
-
-
-
+             <!--For object translation into ngFor we need at least angular 6.1 -->
+            <div *ngFor="let itemopc of valuesOfNode | keyvalue">
+                <div *ngFor="let item of itemopc.value | keyvalue">
+                    <td>{{item.key}} -- {{item.value}} </td>
+                </div>
+            </div>
         </tbody>
-        <!-- For object translation into ngFor we need angular 6.1 -->
-        <!--<tbody *ngFor="let itemopc of valuesOfNode | keyvalue">-->
-            <!--Key: {{itemopc.key}} and Value: {{itemopc.value}}-->
-        <!--</tbody>-->
-
-
     </table>
 </div>
 

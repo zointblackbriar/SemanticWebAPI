@@ -11,7 +11,7 @@
 </div>
 <div class="container">
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <div>
             <p>The following users are authenticated via a JWT end point:</p>
             <ul>
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <h1> OPC UA Results will be displayed under a different link </h1>
         <p> This page uses JWT Authentication which is a similar way of OAuth Authentication </p>
         <p>
@@ -36,5 +36,15 @@
 
     </div>
 
-   </div>
+    <div class="col-lg-4">
+        <h1> Question Answering over Semantic Data </h1>
+        <p> This page will show the result of Question Answering </p>
+        <p>
+            <button disabled="loading" class="red"><a class="red" [routerLink]="['/questionanswering']">Question Answering Page</a></button>
+        </p>
+
+    </div>
+
+
+</div>
 </div>

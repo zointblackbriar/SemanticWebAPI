@@ -1,0 +1,5 @@
+C:/nginx/nginx.exe  -- to start
+
+C:/nginx/nginx.exe -s stop   -- to stop
+
+ 

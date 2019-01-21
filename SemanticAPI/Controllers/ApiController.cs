@@ -174,6 +174,7 @@ namespace SemanticAPI.Controllers
             return Ok(result);
         }
 
+        //This should be get request because we do not have any load of body
         [HttpPost("serverconf/{DataSetID:int}/allnodes/{node_id:regex(^\\d+-(?:(\\d+)|(.+))$)?}")]
         public async Task<IActionResult> InsertNodeAsync(int DataSetID, string node_id, [FromBody] VariableState state)
         {
@@ -281,6 +282,27 @@ namespace SemanticAPI.Controllers
             }
             return Ok("Write on Node {node_id} in the Data Set {DataSetID} executed.");
         }
+
+        //Tested with Node-OPC UA Server
+        //Node OPC UA Server created Create Subscription Request and Create Monitored Items Request
+        [HttpPost("serverconf/{DataSetID:int}/subscribeNodes/{monitor_id:regex(^\\d+-(?:(\\d+)|(.+))$)?}")]
+        public async Task<IActionResult> SubscriptionRequest(int DatasetID, string monitor_id)
+        {
+            var serverUrl = _uaServers[DatasetID].Url;
+            if (!(await _uaClient.IsServerAvailable(serverUrl)))
+                return StatusCode(500, "Data Set " + DatasetID + " NotAvailable");
+            try { 
+                if ((await _uaClient.Subscription(serverUrl, monitor_id)))
+                    return Ok("Subscription has been planted");
+            }
+            catch (Exception exc)
+            {
+                return BadRequest(new { error = exc.Message });
+            }
+
+            return Ok("There is no problem with Subscription");
+        }
+
     }
 }
 

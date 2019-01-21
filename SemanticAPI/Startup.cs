@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using SemanticAPI.Models.Options;
 using SemanticAPI.OPCUAModel;
 using SemanticAPI.Services;
+using AutoMapper;
 
 namespace SemanticAPI
 {
@@ -64,8 +65,6 @@ namespace SemanticAPI
             //First two important
             services.AddCors();
             services.AddMvc();
-
-
 
         }
 

@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SemanticAPI.Entities;
@@ -14,18 +15,20 @@ namespace SemanticAPI.Services
 
     public interface IUserService
     {
-        User Authenticate(string username, string password);
-        IEnumerable<User> GetAll();
+        Task<User> Authenticate(string username, string password);
+        Task<IEnumerable<User>> GetAll();
     }
 
     public class UserService : IUserService
     {
+
         private List<User> _users = new List<User>
         {
             new User {Id = 1, FirstName = "Orcun", LastName = "Oruc", UserName="orcun", Password="helloworld" },
             new User {Id = 2, FirstName = "Adrian", LastName = "Singer", UserName="adrian", Password="fraunhofer" }
 
         };
+
 
         private readonly AppSettings _appSettings;
 
@@ -34,9 +37,9 @@ namespace SemanticAPI.Services
             _appSettings = appSettings.Value;
         }
 
-        public User Authenticate(string username, string password)
+        public async Task<User> Authenticate(string username, string password)
         {
-            var user = _users.SingleOrDefault(data => data.UserName == username && data.Password == password);
+            var user = await Task.Run(() => _users.SingleOrDefault(data => data.UserName == username && data.Password == password));
 
             if (user == null)
                 return null;
@@ -64,13 +67,14 @@ namespace SemanticAPI.Services
 
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            return _users.Select(x =>
-            {
+            // return users without passwords
+            return await Task.Run(() => _users.Select(x => {
                 x.Password = null;
                 return x;
-            });
+            }));
         }
+
     }
 }

@@ -7,14 +7,14 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/compiler": "^6.0.0",
-    "@angular/core": "^6.1.1",
-    "@angular/forms": "^6.0.0",
+    "@angular/common": "^7.0.0",
+    "@angular/compiler": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/forms": "^7.0.0",
     "@angular/http": "latest",
-    "@angular/platform-browser": "^6.0.0",
-    "@angular/platform-browser-dynamic": "^6.0.0",
-    "@angular/router": "^6.0.0",
+    "@angular/platform-browser": "^7.0.0",
+    "@angular/platform-browser-dynamic": "^7.0.0",
+    "@angular/router": "^7.0.0",
     "@auth0/angular-jwt": "latest",
     "@types/datatables.net": "^1.10.13",
     "angular-6-datatable": "^0.8.0",
@@ -23,7 +23,8 @@
     "datatables.net-buttons-dt": "^1.5.4",
     "jwt-decode": "latest",
     "rxjs": "^6.1.0",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "@angular/material": "latest"
   },
   "devDependencies": {
     "@types/node": "^10.0.4",

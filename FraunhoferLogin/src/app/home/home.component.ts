@@ -18,7 +18,4 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    // OpcuaPage() {
-    //     this.router.navigate(['/opcua']);
-    // }
 }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/app/opcua/opcua.component.ts" line="151" mnemonic="7" />
-    <bookmark url="file://$PROJECT_DIR$/src/app/opcua/opcua.component.html" line="39" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/src/app/opcua/opcua.component.ts" line="141" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9edacdf9-6b05-4f5f-81a5-0a2fff6c9dd8" name="Default" comment="" />
@@ -18,92 +17,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="opcua.service.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.service.ts">
+      <file leaf-file-name="login.component.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/login/login.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="e#79#130#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="82">
+              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="opcua.interceptor.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.interceptor.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="46" column="64" selection-start-line="46" selection-start-column="64" selection-end-line="46" selection-end-column="64" />
-              <folding>
-                <element signature="e#0#60#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.component.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/login/login.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-14">
-              <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="authentication.service.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/_services/authentication.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/_services/index.ts">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="index.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/_helpers/index.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jwt.interceptor.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/_helpers/jwt.interceptor.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.routing.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/app.routing.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="13" column="33" lean-forward="true" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="opcua.component.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="opcua.component.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="38" column="41" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="41" />
-              <folding>
-                <element signature="n#src#0;n#img#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#src#0;n#img#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="-204">
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -114,27 +41,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="TypeScript File" />
         <option value="CSS File" />
+        <option value="TypeScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>form</find>
-      <find>button</find>
-      <find>FetchData</find>
-      <find>dtOpt</find>
-      <find>newNodes</find>
-      <find>arrayPostNodes</find>
-      <find>fetch</find>
-      <find>setOpcUA</find>
-      <find>loginForm</find>
-      <find>opcuaForm</find>
-      <find>serverInfo</find>
-      <find>addressinfo</find>
-      <find>httpOptions</find>
-      <find>writing</find>
       <find>h1</find>
       <find>HttpCLient</find>
       <find>post</find>
@@ -151,6 +65,20 @@
       <find>globalMaterialIcon</find>
       <find>fake</find>
       <find>testbackend</find>
+      <find>Unknown Error</find>
+      <find>@angular/Core</find>
+      <find>Authe</find>
+      <find>Cancel</find>
+      <find>Fetch Data</find>
+      <find>bodyOfRequest</find>
+      <find>testforstat</find>
+      <find>result</find>
+      <find>writing_node</find>
+      <find>subscriptionPath</find>
+      <find>Subscription</find>
+      <find>writingNode</find>
+      <find>ProsysServer</find>
+      <find>server</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,10 +87,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/app/login/login.component.html" />
-        <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/stylesheet/button.css" />
         <option value="$PROJECT_DIR$/src/app/OPCUAInfo/index.ts" />
         <option value="$PROJECT_DIR$/src/app/opcuainfo/opcuainfo.component.html" />
@@ -177,25 +102,42 @@
         <option value="$PROJECT_DIR$/src/app/opcuainfo/opcua.component.ts" />
         <option value="$PROJECT_DIR$/src/app/opcua/index.ts" />
         <option value="$PROJECT_DIR$/src/app/login/login.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/home/home.component.ts" />
         <option value="$PROJECT_DIR$/src/app/_services/authentication.service.ts" />
-        <option value="$PROJECT_DIR$/src/app/app.routing.ts" />
         <option value="$PROJECT_DIR$/scripts/particle.js" />
         <option value="$PROJECT_DIR$/stylesheet/background.css" />
-        <option value="$PROJECT_DIR$/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/src/app.component.css.ts" />
         <option value="$PROJECT_DIR$/src/app.component.css" />
         <option value="$PROJECT_DIR$/src/app/app.component.css" />
         <option value="$PROJECT_DIR$/src/app/opcua/opcua.component.css" />
         <option value="$PROJECT_DIR$/src/app/app.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/src/app/opcua/opcua.service.ts" />
-        <option value="$PROJECT_DIR$/src/app/home/home.component.html" />
-        <option value="$PROJECT_DIR$/src/app/opcua/opcua.component.html" />
-        <option value="$PROJECT_DIR$/src/app/opcua/opcua.component.ts" />
         <option value="$PROJECT_DIR$/src/app/_helpers/jwt.interceptor.ts" />
         <option value="$PROJECT_DIR$/src/app/opcua/opcua.interceptor.ts" />
         <option value="$PROJECT_DIR$/src/app/_helpers/index.ts" />
+        <option value="$PROJECT_DIR$/src/app/questionanswering/index.ts" />
+        <option value="$PROJECT_DIR$/src/app/questionanswering/questionanswering.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/questionanswering/questionanswering.interceptor.ts" />
+        <option value="$PROJECT_DIR$/src/app/home/home.component.html" />
+        <option value="$PROJECT_DIR$/src/app/questionanswering/questionanswering.component.html" />
+        <option value="$PROJECT_DIR$/src/app/home/home.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/register/index.ts" />
+        <option value="$PROJECT_DIR$/src/app/_services/alert.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/_services/index.ts" />
+        <option value="$PROJECT_DIR$/src/app/register/register.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/_services/user.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/_directives/alert.component.html.ts" />
+        <option value="$PROJECT_DIR$/src/app/_directives/alert.component.html" />
+        <option value="$PROJECT_DIR$/src/app/_directives/alert.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/_directives/index.ts" />
+        <option value="$PROJECT_DIR$/src/app/app.component.html" />
+        <option value="$PROJECT_DIR$/src/index.html" />
+        <option value="$PROJECT_DIR$/src/app/register/register.component.html" />
+        <option value="$PROJECT_DIR$/src/app/login/login.component.html" />
+        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/app.routing.ts" />
+        <option value="$PROJECT_DIR$/src/app/questionanswering/questionanswering.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/opcua/opcua.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/opcua/opcua.component.html" />
       </list>
     </option>
   </component>
@@ -215,11 +157,11 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1607" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="662" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1535" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -227,7 +169,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -250,6 +191,13 @@
               <item name="FraunhoferLogin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FraunhoferLogin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FraunhoferLogin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="_directives" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FraunhoferLogin" type="b2602c69:ProjectViewProjectNode" />
@@ -303,15 +251,24 @@
             <path>
               <item name="FraunhoferLogin" type="b2602c69:ProjectViewProjectNode" />
               <item name="FraunhoferLogin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="questionanswering" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FraunhoferLogin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FraunhoferLogin" type="462c0819:PsiDirectoryNode" />
               <item name="stylesheet" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -324,6 +281,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\V2\SemanticAPI\FraunhoferLogin\src\app" />
       <recent name="G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\FraunhoferLogin\src\app" />
       <recent name="G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\angular-6-jwt-authentication-example\src\app" />
       <recent name="G:\AllFiles\Projeler\CSharpProjeler\DotNetCore\SemanticWebService\SemanticAPI\angular-6-jwt-authentication-example\src" />
@@ -385,36 +343,101 @@
       <workItem from="1539356916343" duration="11673000" />
       <workItem from="1539428482548" duration="5780000" />
       <workItem from="1539593940245" duration="4137000" />
-      <workItem from="1539678697359" duration="2026000" />
+      <workItem from="1539678697359" duration="2891000" />
+      <workItem from="1539687776189" duration="621000" />
+      <workItem from="1539771395950" duration="599000" />
+      <workItem from="1539774130498" duration="599000" />
+      <workItem from="1539953975030" duration="670000" />
+      <workItem from="1540072134642" duration="3000" />
+      <workItem from="1540294749688" duration="5281000" />
+      <workItem from="1540371540313" duration="2904000" />
+      <workItem from="1540467186305" duration="1207000" />
+      <workItem from="1540648277566" duration="1798000" />
+      <workItem from="1540845437855" duration="620000" />
+      <workItem from="1540993167432" duration="520000" />
+      <workItem from="1540993883824" duration="1258000" />
+      <workItem from="1540997516671" duration="6220000" />
+      <workItem from="1541076040847" duration="3550000" />
+      <workItem from="1541099330707" duration="9449000" />
+      <workItem from="1541150442834" duration="1676000" />
+      <workItem from="1541184962865" duration="10000" />
+      <workItem from="1541251555712" duration="2968000" />
+      <workItem from="1541404569084" duration="1603000" />
+      <workItem from="1541419294157" duration="1376000" />
+      <workItem from="1541442703646" duration="5832000" />
+      <workItem from="1541493464288" duration="2536000" />
+      <workItem from="1541576693495" duration="606000" />
+      <workItem from="1541627361407" duration="5547000" />
+      <workItem from="1541681072909" duration="1217000" />
+      <workItem from="1541715998718" duration="1203000" />
+      <workItem from="1541775492562" duration="630000" />
+      <workItem from="1542060712289" duration="758000" />
+      <workItem from="1542096890267" duration="3080000" />
+      <workItem from="1542113361308" duration="625000" />
+      <workItem from="1543186876545" duration="858000" />
+      <workItem from="1543224852582" duration="1868000" />
+      <workItem from="1543771509510" duration="678000" />
+      <workItem from="1543827149176" duration="1281000" />
+      <workItem from="1544176458548" duration="599000" />
+      <workItem from="1544521382066" duration="1197000" />
+      <workItem from="1544603445496" duration="687000" />
+      <workItem from="1544625435611" duration="668000" />
+      <workItem from="1544886808335" duration="431000" />
+      <workItem from="1544889960950" duration="2090000" />
+      <workItem from="1544978776777" duration="1550000" />
+      <workItem from="1545059923615" duration="1210000" />
+      <workItem from="1545351334911" duration="6150000" />
+      <workItem from="1545649773330" duration="3945000" />
+      <workItem from="1545686110096" duration="631000" />
+      <workItem from="1545765823880" duration="784000" />
+      <workItem from="1545809332207" duration="1975000" />
+      <workItem from="1546011661303" duration="801000" />
+      <workItem from="1546027763118" duration="3697000" />
+      <workItem from="1546795396496" duration="599000" />
+      <workItem from="1546974288346" duration="2073000" />
+      <workItem from="1547031146565" duration="1255000" />
+      <workItem from="1547039587416" duration="815000" />
+      <workItem from="1547116276405" duration="2720000" />
+      <workItem from="1547292076782" duration="597000" />
+      <workItem from="1547367937924" duration="1112000" />
+      <workItem from="1547375422945" duration="2532000" />
+      <workItem from="1547409476405" duration="1754000" />
+      <workItem from="1547475443108" duration="981000" />
+      <workItem from="1547642917139" duration="904000" />
+      <workItem from="1547669221583" duration="615000" />
+      <workItem from="1547719143254" duration="3227000" />
+      <workItem from="1547754123006" duration="1397000" />
+      <workItem from="1548017188469" duration="670000" />
+      <workItem from="1548063839117" duration="631000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113002000" />
+    <option name="totallyTimeSpent" value="231815000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-8" width="1936" height="1094" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="662" extended-state="7" />
     <editor active="true" />
     <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27452415" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27208123" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1921875" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33453888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TypeScript" order="8" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24963397" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,109 +448,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/_guards/auth.guard.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_guards/index.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="2" lean-forward="true" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.routing.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="55" lean-forward="true" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/login/login.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="36" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md" />
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json" />
-    <entry file="file://$PROJECT_DIR$/images/fraunhofer.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_guards/index.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_guards/auth.guard.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/polyfills.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_helpers/error.interceptor.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/typings.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_models/index.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="52" lean-forward="true" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/home/index.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/login/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="10" selection-start-column="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stylesheet/button.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1666">
           <caret line="98" column="16" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/particle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7667">
-          <caret line="451" selection-start-line="451" selection-end-line="451" />
         </state>
       </provider>
     </entry>
@@ -538,28 +466,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_models/user.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_services/user.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.component.css.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/typescript/lib/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1481">
@@ -581,20 +488,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/home/home.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@angular/core/src/view/types.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
@@ -602,27 +495,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/login/login.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="32" column="15" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="60" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_helpers/testbackend.ts" />
     <entry file="file://$PROJECT_DIR$/src/app/opcua/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -630,110 +503,246 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/home/home.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="6" selection-start-line="16" selection-end-line="18" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="86" column="44" lean-forward="true" selection-start-line="86" selection-start-column="44" selection-end-line="86" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.routing.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="33" lean-forward="true" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_services/index.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/questionanswering/questionanswering.interceptor.ts" />
+    <entry file="file://$PROJECT_DIR$/src/polyfills.ts">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/login/login.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14">
-          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_services/authentication.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_helpers/jwt.interceptor.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="41" />
-          <folding>
-            <element signature="n#src#0;n#img#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#src#0;n#img#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#79#130#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="170">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.interceptor.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="46" column="64" selection-start-line="46" selection-start-column="64" selection-end-line="46" selection-end-column="64" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/app/home/index.ts">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/_helpers/testbackend.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/_models/index.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_models/user.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+        <state>
+          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/_helpers/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_helpers/jwt.interceptor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.interceptor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/questionanswering/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="48" lean-forward="true" selection-start-line="1" selection-start-column="48" selection-end-line="1" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_services/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_services/user.service.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/typings.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_services/alert.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_services/authentication.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_directives/alert.component.html.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/_directives/alert.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/particle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7293">
+          <caret line="432" column="15" selection-start-line="432" selection-start-column="15" selection-end-line="432" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_helpers/error.interceptor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/questionanswering/questionanswering.interceptor.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/register/register.component.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/_directives/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="34" selection-start-column="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_guards/index.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/register/index.ts" />
+    <entry file="file://$PROJECT_DIR$/src/app/register/register.component.html" />
+    <entry file="file://$PROJECT_DIR$/src/app/home/home.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="26" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.routing.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/questionanswering/questionanswering.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/_directives/alert.component.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/login/login.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/home/home.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/questionanswering/questionanswering.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="41" column="27" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="91" column="43" lean-forward="true" selection-start-line="91" selection-start-column="43" selection-end-line="91" selection-end-column="43" />
+          <folding>
+            <element signature="e#83#189#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/login/login.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/opcua/opcua.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
         </state>
       </provider>
     </entry>

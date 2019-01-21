@@ -65,6 +65,7 @@
         <WellKnownDiscoveryUrls></WellKnownDiscoveryUrls>
 
         <!-- EndpointDescriptions for system wide discovery servers -->
+        <!-- Test with the discovery server named LDS-ME -->
         <DiscoveryServers></DiscoveryServers>
 
         <!-- The minimum subscription lifetime.

@@ -16,7 +16,8 @@ const httpOptions = {
         'Content-Type':  'application/json'
     })
 };
-@Pipe({name: 'valuesOfNode'})
+
+//@Pipe({name: 'valuesOfNode'})
 @Component({templateUrl: 'opcua.component.html', styleUrls: ['opcua.component.css'], selector: 'input-form'})
 export class OpcuaComponent implements OnInit, OnDestroy {
     title = 'app';
@@ -35,8 +36,10 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     //opcuaForm: FormGroup;
     addressInfo: any ;
     serverInfo: number;
-    bodyOfRequest: any;
+    writingNode: any;
+    subscriptionId: any;
     connectionString: string;
+    subscriptionPath: string;
     public errorMsg: any;
     globalMaterialIcon: any;
 
@@ -54,35 +57,6 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     {
         if(materialIcon != null)
             this.globalMaterialIcon = materialIcon;
-        // if(materialIcon == null)
-        // {
-        //     console.log("addressinfo not null");
-        //     //{responseType:'json'})
-        //     return this.http.get<any>(this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.addressInfo)
-        //         .subscribe( (res:Response) => {
-        //                 this.data = res;
-        //                 this.temp_var = true;
-        //                 console.log("this.data", this.data);
-        //                 //this.arrayNodes = this.data;
-        //                 this.arrayNodes = JSON.stringify(this.data);
-        //                 this.arrayNodes = JSON.parse(this.arrayNodes);
-        //                 // this.valuesOfNode.push(this.arrayNodes);
-        //                 this.valuesOfNode = this.arrayNodes['value'];
-        //                 this.statusOfNode = this.arrayNodes['status'];
-        //
-        //                 // console.log(this.arrayNodes);
-        //                 //
-        //                 // this.valuesOfNode = JSON.stringify(this.arrayNodes['value']);
-        //                 // this.statusOfNode = JSON.stringify(this.arrayNodes['status']);
-        //                 // console.log("valuesOfNode" + this.valuesOfNode);
-        //                 // console.log("statusOfNode" + this.statusOfNode);
-        //             },
-        //             (err: HttpErrorResponse) => {
-        //                 this.errorMsg = err;
-        //                 console.log(err.message);
-        //             }
-        //         );
-        // } else
 
             return this.http.get<any>(this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.globalMaterialIcon)
                 .subscribe( (res:Response) => {
@@ -107,15 +81,17 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     //get f() { return this.opcuaForm.controls; }
 
     setOpcUA() {
-        console.log("hello SendCustomize");
+        console.log("setOpcUA");
         console.log("addressInfo" + this.addressInfo);
         this.addressInfo = "0-85";
         this.globalMaterialIcon = this.addressInfo;
     }
 
-    serverConf()
+    serverConf(param_string: any)
     {
         console.log("hello SendCustomize");
+        console.log("param_string", param_string);
+        this.serverInfo = param_string;
         console.log("serverinfo" + this.serverInfo);
         return this.serverInfo;
     }
@@ -124,12 +100,26 @@ export class OpcuaComponent implements OnInit, OnDestroy {
     {
         console.log("Post Request");
         this.connectionString = this.connectUrl + '/api/serverconf/' + this.serverInfo + '/allnodes/' + this.globalMaterialIcon;
-        console.log("test String", this.connectionString);
-        console.log("body of Request", this.bodyOfRequest);
-        return this.http.post(this.connectionString, this.bodyOfRequest, httpOptions)
+        console.log("connection test string", this.connectionString);
+        console.log("The value of writeable node", this.writingNode);
+        return this.http.post(this.connectionString, this.writingNode, httpOptions)
 
             .subscribe( data => {
                 console.log("POST Request is successful", data);
+            },
+                error => this.errorMsg = error
+            );
+    }
+
+    public subscribtionOPCUA()
+    {
+        console.log("Subscribe Request");
+        this.subscriptionPath = this.connectUrl + '/api/serverconf/' + this.serverInfo + '/subscribeNodes/' + this.subscriptionId;
+        console.log("Test Subscription Path:", this.subscriptionPath);
+        console.log("Subscription ID:", this.subscriptionId);
+        return this.http.post(this.subscriptionPath, this.subscriptionId, httpOptions)
+            .subscribe( data => {
+                console.log("POST Request of Subscription Request is attempted", data);
             },
                 error => this.errorMsg = error
             );

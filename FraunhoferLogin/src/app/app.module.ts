@@ -3,9 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-// used to create fake backend
-//import { fakeBackendProvider } from './_helpers';
-
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
 
@@ -15,13 +12,10 @@ import { LoginComponent } from './login';
 import { OpcuaComponent} from "./opcua";
 import {Routes} from "@angular/router";
 import {DataTablesModule} from "angular-datatables";
-
-// const appRoutes : Routes = [
-//     {
-//         path: '/opcua',
-//         component : OpcuaComponent
-//     }
-// ];
+import {QuestionansweringComponent} from "./questionanswering";
+import {AlertService, AuthenticationService, UserService} from "./_services";
+import {AuthGuard} from "./_guards";
+import {AlertComponent} from "./_directives";
 
 @NgModule({
     imports: [
@@ -37,14 +31,16 @@ import {DataTablesModule} from "angular-datatables";
         HomeComponent,
         LoginComponent,
         OpcuaComponent,
+        QuestionansweringComponent,
+        AlertComponent,
     ],
     providers: [
+        AuthGuard,
+        AlertService,
+        AuthenticationService,
+        UserService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-        //You can put a fake backend here
-        //fake-backend
-
     ],
     bootstrap: [AppComponent]
 })

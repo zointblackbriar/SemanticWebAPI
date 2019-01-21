@@ -81,6 +81,7 @@ namespace SemanticAPI.OPCUAModel
             }
         }
 
+        //Node Findings with References
         internal NodeId GetDataTypeEncodingNodeId(NodeId dataTypeNodeId)
         {
             _session.Browse(
