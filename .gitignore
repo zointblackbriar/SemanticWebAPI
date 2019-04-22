@@ -372,3 +372,8 @@ typings
 
 # Generated files
 dist
+
+# file: ~/.gitignore_global
+.DS_Store
+.idea
+

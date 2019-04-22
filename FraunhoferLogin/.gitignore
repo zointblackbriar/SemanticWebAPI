@@ -39,3 +39,6 @@ typings
 
 # Generated files
 dist
+
+#configuration of Web Storm
+.idea

@@ -62,7 +62,11 @@
 
         <!-- The well-known URLs for the local discovery servers
              URLs are tested in the order they appear in this list. -->
-        <WellKnownDiscoveryUrls></WellKnownDiscoveryUrls>
+        <WellKnownDiscoveryUrls>
+          <ua:String>opc.tcp://{0}:4840</ua:String>
+          <ua:String>http://{0}:52601/UADiscovery</ua:String>
+          <ua:String>http://{0}/UADiscovery/Default.svc</ua:String>
+        </WellKnownDiscoveryUrls>
 
         <!-- EndpointDescriptions for system wide discovery servers -->
         <!-- Test with the discovery server named LDS-ME -->

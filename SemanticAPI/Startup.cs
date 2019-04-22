@@ -11,6 +11,7 @@ using SemanticAPI.Models.Options;
 using SemanticAPI.OPCUAModel;
 using SemanticAPI.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SemanticAPI
 {
@@ -65,7 +66,6 @@ namespace SemanticAPI
             //First two important
             services.AddCors();
             services.AddMvc();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

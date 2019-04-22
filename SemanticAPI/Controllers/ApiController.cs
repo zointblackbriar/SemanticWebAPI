@@ -285,12 +285,17 @@ namespace SemanticAPI.Controllers
 
         //Tested with Node-OPC UA Server
         //Node OPC UA Server created Create Subscription Request and Create Monitored Items Request
+        //{monitor_id:regex(^\\d+-(?:(\\d+)|(.+))$)?}
+        //[Authorize]
+        //^[a-zA-Z0-9]+$
+        //[[:alnum:]]
         [HttpPost("serverconf/{DataSetID:int}/subscribeNodes/{monitor_id:regex(^\\d+-(?:(\\d+)|(.+))$)?}")]
-        public async Task<IActionResult> SubscriptionRequest(int DatasetID, string monitor_id)
+        //[HttpGet("serverconf/{DataSetID:int}/subscribeNodes/{monitor_id}")]
+        public async Task<IActionResult> SubscriptionRequest(int DataSetID, string monitor_id)
         {
-            var serverUrl = _uaServers[DatasetID].Url;
+            var serverUrl = _uaServers[DataSetID].Url;
             if (!(await _uaClient.IsServerAvailable(serverUrl)))
-                return StatusCode(500, "Data Set " + DatasetID + " NotAvailable");
+                return StatusCode(500, "Data Set " + DataSetID + " NotAvailable");
             try { 
                 if ((await _uaClient.Subscription(serverUrl, monitor_id)))
                     return Ok("Subscription has been planted");
@@ -302,6 +307,22 @@ namespace SemanticAPI.Controllers
 
             return Ok("There is no problem with Subscription");
         }
+
+        //[HttpGet("discoverservice/status")]
+        //public async Task<IActionResult> FindAllServers()
+        //{
+        //    try
+        //    {
+        //        if ((await _uaClient.DiscoveryClientApi()))
+        //            return Ok("Discovery Client Api has been implemented");
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        return BadRequest(new { error = exc.Message });
+        //    }
+
+        //    return Ok("No problem with Subscription");
+        //}
 
     }
 }

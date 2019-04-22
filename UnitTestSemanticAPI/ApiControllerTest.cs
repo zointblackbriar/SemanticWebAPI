@@ -1,25 +1,57 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using SemanticAPI.Controllers;
 using SemanticAPI.Models.Options;
 using SemanticAPI.OPCUAModel;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace UnitTestSemanticAPI
 {
-    // class ApiControllerTest : ApiController
-    //{
-    //    private readonly IOPCUAClientSingleton _uaClient = null;
-    //    private readonly ServerIdentities[] _uaServers;
+    public class ApiControllerTest
+    {
+        //[Fact]
+        //public IActionResult TestGetDataSet()
+        //{
+        //    IHostingEnvironment env;
+        //    //IOptions<ServerOptions> sampleOptions = Options.Create<ServerOptions>(new ServerOptions());
+        //    var builder = new ConfigurationBuilder()
+        //        .SetBasePath(env.ContentRootPath)
+        //        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+        //        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+        //        .AddEnvironmentVariables();
+
+        //    Configuration = builder.Build();
 
 
-    //    public ApiControllerTest(IOptions<ServerOptions> servers, IOPCUAClientSingleton OPCUAClient)
-    //    {
-    //        this._uaServers = servers.Value.Servers;
-    //        for (int i = 0; i < _uaServers.Length; i++) _uaServers[i].Id = i;
+        //    OPCUAClient _client = new OPCUAClient();
+        //    ApiController _apiController = new ApiController(Configuration, _client);
 
-    //        this._uaClient = OPCUAClient;
-    //    }
-    //}
+        //    var result = _apiController.getDataSets();
+        //    var okResult = result as OkObjectResult;
+        //    Assert.NotNull(okResult);
+        //    Assert.Equal(200, okResult.StatusCode);
+        //    return null;
+        //}
+
+        [Fact]
+        public Task<IActionResult> TestReadFromServer()
+        {
+            IOptions<ServerOptions> sampleOptions = Options.Create<ServerOptions>(new ServerOptions());
+            OPCUAClient _client = new OPCUAClient();
+
+            ApiController _apiController = new ApiController(sampleOptions, _client);
+            var result = _apiController.GetNode(1);
+            var okResult = result;
+
+            Assert.NotNull(okResult);
+            //Assert.Equal(200, okResult);
+            return null;
+        }
+
+
+    }
+
 }

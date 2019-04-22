@@ -22,6 +22,8 @@ namespace SemanticAPI.OPCUAModel
         Task<bool> IsFolderTypeAsync(string serverUrlstring, string nodeIdStr);
         Task<bool> IsServerAvailable(string serverUrlstring);
         Task<bool> Subscription(string serverUrlstring, string monitor_id);
+
+        Task<bool> DiscoveryClientApi();
     }
 
     public interface IOPCUAClientSingleton : IOPCUAClient { }
@@ -112,7 +114,7 @@ namespace SemanticAPI.OPCUAModel
         {
             Session session = await GetSessionAsync(serverUrl);
             NodeId nodeToBrowseId = ParserUtils.ParsePlatformNodeIdString(nodeToBrowseIdStr);
-            System.Diagnostics.Debug.WriteLine("NodeToBrowseID [TEST] " + nodeToBrowseId);
+            System.Diagnostics.Debug.WriteLine("NodeToBrowseID " + nodeToBrowseId);
             var browser = new Browser(session)
             {
                 NodeClassMask = (int)NodeClass.Method | (int)NodeClass.Object | (int)NodeClass.Variable,
@@ -120,7 +122,7 @@ namespace SemanticAPI.OPCUAModel
                 BrowseDirection = BrowseDirection.Forward,
                 ReferenceTypeId = ReferenceTypeIds.HierarchicalReferences
             };
-            System.Diagnostics.Debug.WriteLine("browser to String[TEST] " + browser.Browse(nodeToBrowseId));
+            System.Diagnostics.Debug.WriteLine("browser to String " + browser.Browse(nodeToBrowseId));
             
             var sender = browser.Browse(nodeToBrowseId)
                 .Select(rd => new EdgeDescription(rd.NodeId.ToStringId(session.MessageContext.NamespaceUris),
@@ -188,19 +190,19 @@ namespace SemanticAPI.OPCUAModel
             return await RestoreSessionAsync(serverUrlstring);
         }
 
-        private static Subscription CreateSubscription(Session session, int publishingInterval, uint maxNotificationPerPublish)
-        {
-            var sub = new Subscription(session.DefaultSubscription)
-            {
-                PublishingInterval = publishingInterval,
-                MaxNotificationsPerPublish = maxNotificationPerPublish
-            };
+        //private static Subscription CreateSubscription(Session session, int publishingInterval, uint maxNotificationPerPublish)
+        //{
+        //    var sub = new Subscription(session.DefaultSubscription)
+        //    {
+        //        PublishingInterval = publishingInterval,
+        //        MaxNotificationsPerPublish = maxNotificationPerPublish
+        //    };
 
-            if (!session.AddSubscription(sub)) return null;
-            sub.Create();
-            return sub;
+        //    if (!session.AddSubscription(sub)) return null;
+        //    sub.Create();
+        //    return sub;
 
-        }
+        //}
 
         /// <summary>
         /// This method is called when a OPC UA Service call in a session object returns an error 
@@ -309,25 +311,42 @@ namespace SemanticAPI.OPCUAModel
         public async Task<bool> Subscription(string serverUrlstring, string monitor_id)
         {
             //Create one Subscription and add all monitorable nodes inside
-            int monitored_int_id = 0;
+            //int monitored_int_id = 0;
+            string monitored_id = "";
             try
             {
                 List<string> key_value_pairs = monitor_id.Split('-').ToList();
-                monitored_int_id = System.Convert.ToInt32(key_value_pairs[1].Trim());
+                //monitored_int_id = System.Convert.ToInt32(key_value_pairs[1].Trim());
+                monitored_id = System.Convert.ToString(key_value_pairs[1].Trim());
 
-            } catch(Exception exc)
+            }
+            catch (Exception exc)
             {
                 Console.WriteLine("Conversion monitored node error : " + exc.Message);
             }
+            Console.WriteLine("monitored node id: {0}", monitored_id);
             Console.WriteLine("Create a subscription with publishing interval of 1 second");
+            List<MonitoredItem> list = null;
             Session session = await GetSessionAsync(serverUrlstring);
             var exitCode = ExitCode.ErrorCreateSubscription;
             //var defaultSubscription = (Subscription)null;
-            var defaultSubscription = new Subscription();
             //var subscription = new Subscription(session.DefaultSubscription) { PublishingInterval = 1000 };
             //Sampling interval can be 1000 ms, 2500 ms, 5000 ms or as fast as possible
+            Subscription defaultSubscription = new Subscription();
+            list = new List<MonitoredItem>
+                {
+                new MonitoredItem(defaultSubscription.DefaultItem)
+                    {
+                        //DisplayName = "MonitoredNodes", RelativePath = "i=" + monitored_id
+                        DisplayName = "DataChanges", StartNodeId =  "i=" + monitored_id
+                        //DisplayName = "MonitoredNodes", StartNodeId = "i=" + Variables.Server_ServerStatus_CurrentTime.ToString()
+                    }
+                };
+
             if (detectSecondClick == false)
             {
+                //defaultSubscription = new Subscription();
+
                 defaultSubscription.DisplayName = "SubscriptionSemanticAPI";
                 defaultSubscription.PublishingEnabled = true;
                 defaultSubscription.PublishingInterval = 1000;
@@ -336,14 +355,10 @@ namespace SemanticAPI.OPCUAModel
                 //Server_ServerStatus_CurrentTime.ToString()
                 //Variables.Server_ServerStatus_CurrentTime.ToString()
                 //Time node is 2258
-                var list = new List<MonitoredItem>
-                {
-                new MonitoredItem(defaultSubscription.DefaultItem)
-                    {
-                        DisplayName = "MonitoredNodes", StartNodeId = "i=" + monitored_int_id
-                    }
-                };
                 Console.WriteLine("List is:", list);
+                //MonitoredItemCreateRequest request = new MonitoredItemCreateRequest();
+                //request.MonitoringMode = MonitoredItem.
+
                 //How to specify individual item for MonitoredItem
 
                 list.ForEach(i => i.Notification += OnNotification);
@@ -354,6 +369,7 @@ namespace SemanticAPI.OPCUAModel
                 exitCode = ExitCode.ErrorAddSubscription;
                 session.AddSubscription(defaultSubscription);
                 defaultSubscription.Create();
+                //defaultSubscription.SetMonitoringMode(list, request);
 
                 Console.WriteLine("Subscription is good to go");
                 //TODO How to remove subscription with REST API
@@ -365,12 +381,14 @@ namespace SemanticAPI.OPCUAModel
                 {
                     //error case
                     //no subscriptionId and you should find the subscription ID
-                    var subsribtionRemovedFlag = session.RemoveSubscription(defaultSubscription);
+                    detectSecondClick = false;
+                    var subscribtionRemovedFlag = session.RemoveSubscription(defaultSubscription);
                     defaultSubscription.Delete(true);
-                    if (subsribtionRemovedFlag == true)
+                    defaultSubscription.RemoveItems(list);
+                    defaultSubscription.DeleteItems();
+                    if (subscribtionRemovedFlag == true)
                     {
                         Console.WriteLine("Subscription removed");
-                        detectSecondClick = false;
                     }
                 } catch(Exception ex)
                 {
@@ -388,5 +406,16 @@ namespace SemanticAPI.OPCUAModel
                 Console.WriteLine("{0}: {1}, {2}, {3}, {4}, {5}, {6}", item.DisplayName, item.LastMessage, value.WrappedValue, value.StatusCode, item.Status, item.AttributeId, item.StartNodeId);
             }
         }
+
+        //Discovery Service
+        public async Task<bool> DiscoveryClientApi()
+        {
+            //Session session = await GetSessionAsync(serverUrlstring);
+            //ApplicationConfiguration discoverConfiguration = new ApplicationConfiguration();
+            var serverAggregatedUrls = CoreClientUtils.DiscoverServers(_appConfiguration);
+            Console.WriteLine("serverAggregatedUrls: ", serverAggregatedUrls);
+            return true;
+        }
+
     }
 }

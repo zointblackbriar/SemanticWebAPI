@@ -1,27 +1,22 @@
 using System;
 using Xunit;
 using SemanticAPI.Controllers;
-using SemanticAPI.Entities;
 using System.Threading.Tasks;
 using SemanticAPI.Services;
-using Moq;
-using SemanticAPI.Services;
-using SemanticAPI.Entities;
-using SemanticAPI.Controllers;
-using System.Collections.Generic;
 using SemanticAPI.Helpers;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.Net.Http;
 using Microsoft.AspNetCore.TestHost;
+using SemanticAPI.Helpers;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using SemanticAPI.Entities;
 
 namespace UnitTestSemanticAPI
 {
     public class UsersControllerTest
     {
-        private IUserService _userService;
-
 
         [Fact]
         public async Task DefaultPage()
@@ -50,10 +45,19 @@ namespace UnitTestSemanticAPI
         }
 
         [Fact]
-        public async Task UsersGet()
+        public async Task TestUsersGet()
         {
-           var okResult = _userService.GetAll();
-            Assert.IsType<OkObjectResult>(okResult.Result);
+            //AppSettings _appSettings;
+            IOptions<AppSettings> sampleOptions = Options.Create<AppSettings>(new AppSettings());
+
+            IUserService _userService = new UserService(sampleOptions);
+            UsersController _userController = new UsersController(_userService);
+
+            var okResult = await _userController.GetAll();
+            Console.WriteLine(okResult);
+            var objectResult = Assert.IsType<OkObjectResult>(okResult);
+            var model = Assert.IsAssignableFrom<List<IEnumerable<User>>>(objectResult.Value);
+            Assert.Equal(2, model.Count);
         }
 
     }
